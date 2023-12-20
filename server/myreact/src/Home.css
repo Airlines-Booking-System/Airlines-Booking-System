@@ -1,0 +1,132 @@
+/* PRIMARY: rgb(191, 49, 49); */
+/* SECONDARY: rgb(248, 255, 210) */
+
+
+button:hover{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.myfont{
+    font-family: "Roboto";
+    font-weight: bold;
+    font-size: large;
+}
+
+.logoText{
+    font-size: large;
+    /* color: #e63946; */
+    /* color: rgb(138, 218, 178); */
+    color: rgb(248, 255, 210);
+    
+}
+
+.jumbo{
+    /* background-color: rgb(252, 245, 237); */
+    /* background-color: rgb(223, 130, 108); */
+    /* background-color: rgb(233, 117, 42); */
+    background-color: rgb(205, 141, 122);
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    border-style: none;
+    box-shadow: 0px 5px 5px 10px rgba(0, 0, 0, 0.15);
+    font-family: "Roboto";
+}
+
+.restDiv{
+    background-color: rgb(252, 245, 237);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    border-style: none;
+    box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.15);
+    
+}
+
+.logoImg{
+    height: 70x;
+    width: 100px;
+    border-style: none;
+    /* border-radius: 75px; */
+    object-fit: cover;
+}
+
+.LinkedInFreeTrail{
+    color: white;
+    font-weight: bold;
+    font-family: monospace;
+    font-size: x-large;
+    /* background-color: rgb(233, 117, 42); */
+    background-color: rgb(205, 141, 122);
+    margin: 5px;
+    width: 440px;
+    border-style: none;
+    /* height: 33px;
+    width: 150px; */
+    border-radius: 15px;
+    cursor: default;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.LinkedInFreeTrail:hover{
+    margin: 10px;
+    background-color: rgba(205, 141, 122, 0.7);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.tweet{
+    color: white;
+    font-weight: bold;
+    background-color: rgb(205, 141, 122);
+    margin: 5px;
+    border-style: none;
+    /* height: 33px;
+    width: 150px; */
+    border-radius: 15px;
+    cursor: default;
+    font-size: large;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    
+}
+
+.tweet:hover{
+    background-color: rgba(191, 49, 49, 0.6);
+}
+
+/* .gridDiv{
+    display: grid;
+    grid-auto-flow: column;
+} */
+
+.searchDiv{
+    display: inline-block;
+    border-style: none;
+}
+
+.searchBox{
+    padding: 10px;
+    border-style: solid;
+    border-radius: 10px;
+    /* font-family: monospace; */
+    font-size: medium;
+    font-weight: 550;
+    display: inline-block;
+    margin: 10px;
+}
+
+button{
+    transition: padding 0.2s;
+}
