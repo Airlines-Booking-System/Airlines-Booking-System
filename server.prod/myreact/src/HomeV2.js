@@ -5,7 +5,7 @@ import axios from "axios";
 // import {Link, Switch, Route} from 'react-router-dom';
 
 function Home() {
-    const serverUrl = 'http://localhost:6969';
+    const serverUrl = 'http://43.204.37.78:6969';
     const [flights, setFilghts] = useState([]);
     const getFlights = ()=>{
         axios.get(serverUrl + "/flightDtls").then((response)=>{
@@ -48,14 +48,16 @@ function Home() {
                 flights.map((flight)=>{
                     return (
                         <>
-                            <div className="gridDiv" key={flight}>
-                                <div>{flight.name}</div>
-                                <div>{flight.class}</div>
-                                <div>{flight.destination}</div>
-                                <div>{flight.source}</div>
-                                <div>{flight.departure}</div>
-                                <div>{flight.arrival}</div>
-                            </div> 
+                            <div className="container">
+                                <div className="row restDiv" key={flight}>
+                                    <div className="col"> <p className="myfont textVertical">{flight.name}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.class}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.destination}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.source}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.departure}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.arrival}</p></div> {" "}
+                                </div> 
+                            </div>
                         </>
                     );
                 })
@@ -68,12 +70,3 @@ function Home() {
 }
 
 export default Home;
-
-{/* <div className="gridDiv" key={flight}>
-    <div>{flight.name}</div>
-    <div>{flight.class}</div>
-    <div>{flight.destination}</div>
-    <div>{flight.source}</div>
-    <div>{flight.departure}</div>
-    <div>{flight.arrival}</div>
-</div>  */}
