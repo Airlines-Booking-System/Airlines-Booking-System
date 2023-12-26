@@ -54,11 +54,9 @@ function Profile(props) {
                     <img className="profileImage " src="Delhi.jpg" alt="" />   
                 </div> 
                 <div  style={{"display":"inline-block" ,"width":"60%","marginLeft":"200px", "textAlign":""}}>
-                    <p style={{"display":"inline-block"}} className="myfont">Name :</p>
-                    <p className=" myfont greyText" >{passenger.name}</p>
-                    <p className=" myfont greyText" >{passenger.mobile}</p>
-                    <p className=" myfont greyText" >{passenger.email}</p>
-
+                    <p className="myfont">Name : <span className="greyText">{passenger.name}</span></p>
+                    <p className="myfont">Mobile : <span className="greyText">{passenger.mobile}</span></p>
+                    <p className="myfont">Email : <span className="greyText">{passenger.email}</span></p>
                 </div>
             </div> 
         </div>
@@ -68,27 +66,32 @@ function Profile(props) {
             <div className="restDiv" style={{"textAlign":"left"}}>
             <div>
                 <p  className="myfont">  Password : </p>
-                <input type="password" value={passenger.password} className="profileBox greyText" />
+                <p className=" myfont greyText" >{passenger.password}</p>
             </div>
+            <hr />
             <div>
                 <p className="myfont"> DateOfBirth : </p>
-                <input type="text" value={passenger.birth} className="profileBox greyText" />
+                <p className=" myfont greyText" >{passenger.birth}</p>
             </div>
+            <hr />
             <div>
                 <p className="myfont">Gender :</p>
-                <input type="text" value={passenger.gender} className="profileBox greyText" />
+                <p className=" myfont greyText" >{passenger.gender}</p>
             </div>
+            <hr />
             <div>
                 <p className="myfont">Address :</p>
-                <input type="text" value={passenger.address} className="profileBox greyText" />
+                <p className=" myfont greyText" >{passenger.address}</p>
             </div>
+            <hr />
             <div>
                 <p className="myfont">AadharNo :</p>
-                <input type="number" value={passenger.aadhar} className="profileBox greyText" />
+                <p className=" myfont greyText" >{passenger.aadhar}</p>
             </div>
-
+            <hr />
             <div>
-                <button className="tweet" style={{"marginTop":"10px" }}>Update Profile </button>
+                <button className="tweet" style={{"marginTop":"10px" }}>Edit Profile </button>
+
             </div>
             </div>
 

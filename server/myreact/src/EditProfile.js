@@ -53,10 +53,11 @@ function UserProfile(props) {
                 <div className style={{"display":"inline-block","verticalAlign":"middle","margin":"0px","position":"absolute","top":"50%" ,"transform":"translateY(-50%)"}}>
                     <img className="profileImage " src="Delhi.jpg" alt="" />   
                 </div> 
-                <div className style={{"display":"inline-block" ,"width":"60%", "textAlign":"right"}}>
-                    <input type="text" value={passenger.name} className="profileBox myfont" />
-                    <input type="text" value={passenger.mobile} className="profileBox myfont" />
-                    <input type="text" value={passenger.email} className="profileBox myfont" />
+                <div  style={{"display":"inline-block" ,"width":"60%","marginLeft":"200px", "textAlign":""}}>
+                    <input type="text" value={passenger.name} className="profileBox myfont  greyText" />
+                    
+                    <input type="text" value={passenger.mobile} className="profileBox myfont greyText" />
+                    <input type="text" value={passenger.email} className="profileBox myfont greyText" />
                 </div>
             </div> 
         </div>
@@ -66,23 +67,24 @@ function UserProfile(props) {
             <div className="restDiv" style={{"textAlign":"left"}}>
             <div>
                 <p  className="myfont">  Password : </p>
-                <input type="password" value={passenger.password} className="profileBox greyText" />
+                <input type="password" value={passenger.password} className="profileBox myfont greyText" />
             </div>
             <div>
                 <p className="myfont"> DateOfBirth : </p>
-                <input type="text" value={passenger.birth} className="profileBox greyText" />
+                <input type="text" value={passenger.birth} className="profileBox myfont  greyText" />
+              
             </div>
             <div>
                 <p className="myfont">Gender :</p>
-                <input type="text" value={passenger.gender} className="profileBox greyText" />
+                <input type="text" value={passenger.gender} className="profileBox myfont greyText" />
             </div>
             <div>
                 <p className="myfont">Address :</p>
-                <input type="text" value={passenger.address} className="profileBox greyText" />
+                <input type="text" value={passenger.address} className="profileBox myfont greyText" />
             </div>
             <div>
                 <p className="myfont">AadharNo :</p>
-                <input type="number" value={passenger.aadhar} className="profileBox greyText" />
+                <input type="number" value={passenger.aadhar} className="profileBox myfont greyText" />
             </div>
 
             <div>
