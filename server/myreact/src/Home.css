@@ -58,7 +58,7 @@
     margin: 10px;
     border-radius: 15px;
     border-style: none;
-    box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.15);    
+    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.15);    
 }
 
 .growDiv{
@@ -166,4 +166,27 @@ button{
 .cityImage:hover{
     height: 325px;
     width: 440px;
+}
+
+.profileImage{
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+    border-radius: 75px;
+}
+
+.profileBox{
+    padding: 7px;
+    border-style: solid;
+    border-radius: 10px;
+    width: 50%;
+    font-size: medium;
+    font-weight: 500;
+    display: inline-block;
+    margin: 6px;
+}
+.greyText{
+    color:#888888;
+
 }
