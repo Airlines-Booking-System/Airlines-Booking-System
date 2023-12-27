@@ -21,7 +21,6 @@ function Home() {
     useEffect(()=>{
         getFlights();
     }, []);
-
     return ( 
         <>
             <div style={{"textAlign":"center"}}>
@@ -46,7 +45,7 @@ function Home() {
                         <DatePicker className="searchBox myfont" placeholderText="Select Departure Date"></DatePicker>
                        </div>
                         <br />
-                        <button className="LinkedInFreeTrail" onClick={setSearchResult}>SEARCH</button>
+                        <button className="LinkedInFreeTrail" onClick={()=>{setSearchResult(true)}}>SEARCH</button>
                     </div>
                 </div>
             </div>

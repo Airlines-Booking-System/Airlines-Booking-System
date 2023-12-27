@@ -1,6 +1,8 @@
 import Home from "./HomeV3.1";
 import "./Home.css"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import Profile from "./Profile";
+import EditProfile from "./EditProfile"
 import {Link, Switch, Route} from 'react-router-dom'
 
 
@@ -25,6 +27,12 @@ function Forwarding(){
                         <li className="nav-item">
                         <Link to="/contact" className="nav-link myfont" style={{"color":"black"}}>Contact</Link>  
                         </li>
+                        <li className="nav-item">
+                        <Link to="/profile" className="nav-link myfont" style={{"color":"black"}}>My Profile</Link>  
+                        </li>
+                        <li className="nav-item">
+                        <Link to="/editprofile" className="nav-link myfont" style={{"color":"black"}}>Edit Profile</Link>  
+                        </li>
                     </ul>
                     </div>
                 </div>
@@ -32,6 +40,8 @@ function Forwarding(){
             <Switch>
                 <Route path="/" exact component={Home}/>
                 <Route path="/home" exact component={Home}/>
+                <Route path="/profile" exact component={Profile}/>
+                <Route path="/editprofile" exact component={EditProfile}/>
             </Switch>
         </>
     );
