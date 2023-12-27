@@ -190,3 +190,17 @@ button{
     color:#888888;
 
 }
+.editDiv{
+    display: inline-block;
+    width: 60%;
+    margin-left:200px ;    
+}
+
+.image{
+    display: inline-block;
+    vertical-align: middle ;
+    margin: 0px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}

@@ -50,7 +50,7 @@ function Profile(props) {
             </nav>
         <div className="container" style={{"textAlign":"left","position":"relative"}}>
             <div className="restDiv growDiv ">
-                <div className style={{"display":"inline-block","verticalAlign":"middle","margin":"0px","position":"absolute","top":"50%" ,"transform":"translateY(-50%)"}}>
+                <div className="image">
                     <img className="profileImage " src="Delhi.jpg" alt="" />   
                 </div> 
                 <div  style={{"display":"inline-block" ,"width":"60%","marginLeft":"200px", "textAlign":""}}>

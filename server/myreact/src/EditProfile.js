@@ -7,7 +7,7 @@ import "../node_modules/react-datepicker/dist/react-datepicker.css"
 // import {Link, Switch, Route} from 'react-router-dom';
 
 
-function UserProfile(props) {
+function EditProfile(props) {
         const [passenger,setpassenger]=useState([]);
         const serverUrl="";
 
@@ -50,44 +50,43 @@ function UserProfile(props) {
             </nav>
         <div className="container" style={{"textAlign":"left","position":"relative"}}>
             <div className="restDiv growDiv ">
-                <div className style={{"display":"inline-block","verticalAlign":"middle","margin":"0px","position":"absolute","top":"50%" ,"transform":"translateY(-50%)"}}>
+                <div className ="image">
                     <img className="profileImage " src="Delhi.jpg" alt="" />   
                 </div> 
-                <div  style={{"display":"inline-block" ,"width":"60%","marginLeft":"200px", "textAlign":""}}>
+                <div  className="editDiv">
                     <input type="text" value={passenger.name} className="profileBox myfont  greyText" />
-                    
                     <input type="text" value={passenger.mobile} className="profileBox myfont greyText" />
                     <input type="text" value={passenger.email} className="profileBox myfont greyText" />
                 </div>
             </div> 
         </div>
         <div className="container"  style={{"textAlign":"center" ,"marginTop":"10px"}}>
-            
+    
           
             <div className="restDiv" style={{"textAlign":"left"}}>
-            <div>
+            <div style={{"marginBottom":"5px"}} >
                 <p  className="myfont">  Password : </p>
                 <input type="password" value={passenger.password} className="profileBox myfont greyText" />
             </div>
-            <div>
+            <div style={{"marginBottom":"5px"}}>
                 <p className="myfont"> DateOfBirth : </p>
                 <input type="text" value={passenger.birth} className="profileBox myfont  greyText" />
               
             </div>
-            <div>
+            <div style={{"marginBottom":"5px"}}>
                 <p className="myfont">Gender :</p>
                 <input type="text" value={passenger.gender} className="profileBox myfont greyText" />
             </div>
-            <div>
+            <div style={{"marginBottom":"5px"}}>
                 <p className="myfont">Address :</p>
                 <input type="text" value={passenger.address} className="profileBox myfont greyText" />
             </div>
-            <div>
+            <div style={{"marginBottom":"5px"}}>
                 <p className="myfont">AadharNo :</p>
                 <input type="number" value={passenger.aadhar} className="profileBox myfont greyText" />
             </div>
 
-            <div>
+            <div style={{"marginBottom":"5px"}}>
                 <button className="tweet" style={{"marginTop":"10px" }}>Update Profile </button>
             </div>
             </div>
@@ -98,4 +97,4 @@ function UserProfile(props) {
     );
 }
 
-export default UserProfile;
+export default EditProfile;
