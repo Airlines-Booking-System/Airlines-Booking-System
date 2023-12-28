@@ -9,6 +9,9 @@ import "../node_modules/react-datepicker/dist/react-datepicker.css"
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function Home() {
+    const [fromCity, setFromCity] = useState("");
+    const [toCity, setToCity] = useState("");
+    const [selectedDate, setSelectedDate] = useState("");
     const [searchResult, setSearchResult] = useState(false);
     const serverUrl = `http://${serverIp}:${port}`;
     const [flights, setFilghts] = useState([]);
@@ -16,6 +19,18 @@ function Home() {
         axios.get(serverUrl + "/flightDtls").then((response)=>{
             setFilghts(response.data);
         })
+    }
+
+    const handleDateChange = (date)=>{
+        setSelectedDate(date);
+    }
+
+    const onFromCityChange = (args)=>{
+        setFromCity(args.args);
+    }
+
+    const onToCityChange = (args)=>{
+        setToCity(args.args);
     }
 
     useEffect(()=>{
@@ -30,19 +45,19 @@ function Home() {
                         <span className="myfont">
                             From:
                         </span>
-                        <input type="text" placeholder="Enter a city" className="searchBox myfont" />
+                        <input type="text" placeholder="Enter a city" value={fromCity} onChange={onFromCityChange} className="searchBox myfont" />
                         </div>
                         <div style={{"display":"inline-block"}}>
                         <span className="myfont">
                             To:
                         </span>
-                        <input type="text" placeholder="Enter a city" className="searchBox myfont" />
+                        <input type="text" placeholder="Enter a city" value={toCity} onChange={onToCityChange} className="searchBox myfont" />
                         </div>
                        <div style={{"display":"inline-block"}}>
                        <span className="myfont">
                             Date:
                         </span>
-                        <DatePicker className="searchBox myfont" placeholderText="Select Departure Date"></DatePicker>
+                        <DatePicker selected={selectedDate} onChange={handleDateChange} dateFormat="dd/MM/yyyy" className="searchBox myfont" placeholderText="Select Departure Date" ></DatePicker>
                        </div>
                         <br />
                         <button className="LinkedInFreeTrail" onClick={()=>{setSearchResult(true)}}>SEARCH</button>
