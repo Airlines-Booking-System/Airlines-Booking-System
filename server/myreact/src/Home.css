@@ -167,3 +167,21 @@ button{
     height: 325px;
     width: 440px;
 }
+
+.register{
+    padding: 20px;
+    border-style: solid;
+    border-radius: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 550;
+    display: inline-block;
+    margin-bottom: 15px;
+}
+
+.box{
+    height: 400px;
+    width: 400px;
+    padding:20%;
+    
+}
