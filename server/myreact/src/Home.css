@@ -208,3 +208,10 @@ button{
     border-radius: 9px;
 
 }
+
+.titleStyle
+{
+    font-size: 35px;
+    text-decoration: underline;
+    font-weight: normal;
+}

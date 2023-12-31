@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import EditProfile from "./EditProfile"
 import Login from "./Login"
 import Register from "./Register"
+import About from "./About"
 import {Link, Switch, Route} from 'react-router-dom'
 
 
@@ -46,6 +47,7 @@ function Forwarding(){
                 <Route path="/editprofile" exact component={EditProfile}/>
                 <Route path="/register" exact component={Register}/> 
                 <Route path="/login" exact component={Login}/>
+                <Route path="/about" exact component={About}/>
 
             </Switch>
         </>
