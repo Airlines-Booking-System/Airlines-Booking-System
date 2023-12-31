@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import Home from './Login';
-import Login from './Login';
+
+import { BrowserRouter } from 'react-router-dom';
+
+import Forwarding from './Forwarding';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <Login></Login>
+  <BrowserRouter>
+    <Forwarding></Forwarding>
+  </BrowserRouter>
 );
 

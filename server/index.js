@@ -2,7 +2,7 @@ const exp = require('express');
 const config = require('config');
 const cors = require('cors');
 const app = exp();
-const port = config.get("port");
+    const port = config.get("port");
 const flightDtlsApp = require("./routes/flightDtls");
 
 

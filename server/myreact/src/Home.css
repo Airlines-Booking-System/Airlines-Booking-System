@@ -58,7 +58,7 @@
     margin: 10px;
     border-radius: 15px;
     border-style: none;
-    box-shadow: 0px 10px 10px 5px rgba(0, 0, 0, 0.15);    
+    box-shadow: 0px 5px 10px 5px rgba(0, 0, 0, 0.15);    
 }
 
 .growDiv{
@@ -168,20 +168,26 @@ button{
     width: 440px;
 }
 
-.register{
-    padding: 20px;
-    border-style: solid;
-    border-radius: 10px;
-    font-family: monospace;
-    font-size: 14px;
-    font-weight: 550;
-    display: inline-block;
-    margin-bottom: 15px;
+
+.profileImage{
+    object-fit: cover;
+    height: 150px;
+    width: 150px;
+    margin: 20px;
+    border-radius: 75px;
 }
 
-.box{
-    height: 400px;
-    width: 400px;
-    padding:20%;
-    
+.profileBox{
+    padding: 7px;
+    border-style: solid;
+    border-radius: 10px;
+    width: 50%;
+    font-size: medium;
+    font-weight: 500;
+    display: inline-block;
+    margin: 6px;
+}
+.greyText{
+    color:#888888;
+
 }
