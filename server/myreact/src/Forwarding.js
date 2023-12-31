@@ -3,6 +3,8 @@ import "./Home.css"
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import Profile from "./Profile";
 import EditProfile from "./EditProfile"
+import Login from "./Login"
+import Register from "./Register"
 import {Link, Switch, Route} from 'react-router-dom'
 
 
@@ -42,6 +44,9 @@ function Forwarding(){
                 <Route path="/home" exact component={Home}/>
                 <Route path="/profile" exact component={Profile}/>
                 <Route path="/editprofile" exact component={EditProfile}/>
+                <Route path="/register" exact component={Register}/> 
+                <Route path="/login" exact component={Login}/>
+
             </Switch>
         </>
     );

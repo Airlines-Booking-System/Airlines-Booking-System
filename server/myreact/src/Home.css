@@ -191,3 +191,20 @@ button{
     color:#888888;
 
 }
+
+.verticalCenter{
+    display:inline-block;
+    vertical-align:middle;
+    margin:0px;
+    position:absolute;
+    top:50% ;
+    transform:translateY(-50%);
+}
+
+.borderStyle
+{
+    border-style: solid;
+    border-color:#888888 ;
+    border-radius: 9px;
+
+}
