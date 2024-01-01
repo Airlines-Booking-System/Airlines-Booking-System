@@ -211,7 +211,15 @@ button{
 
 .titleStyle
 {
-    font-size: 35px;
-    text-decoration: underline;
+    font-family: 'Merriweather', sans-serif;
+    font-style: italic;
+    font-size: 30px;
+    /* text-decoration: underline; */
     font-weight: normal;
+}
+
+.aboutPara{
+    text-justify: distribute;
+    font-weight: normal;
+    font-size: x-large;
 }
