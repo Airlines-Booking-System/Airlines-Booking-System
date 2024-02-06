@@ -2,7 +2,7 @@ create database airline1;
 
 use airline1;
 
-create table flightDtls(
+create table flight_dtls(
     id int primary key auto_increment,
     name varchar(50),
     class varchar(50),
@@ -12,10 +12,10 @@ create table flightDtls(
     arrival datetime
 );
 
-insert into flightDtls (id, name, class, destination, source, departure, arrival) values
+insert into flight_dtls (id, name, flight_class, destination, source, departure, arrival) values
 (default, 'Air Asia', 'Economy', 'BOM', 'PNQ', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
 (default, 'Akasa', 'Economy', 'PNQ', 'BOM', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
 (default, 'Indigo', 'Economy', 'HYD', 'BOM', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
-(default, 'Ai Asia', 'Economy', 'PNQ', 'IDR', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
+(default, 'Air Asia', 'Economy', 'PNQ', 'IDR', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
 (default, 'Indigo', 'Economy', 'IDR', 'PNQ', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
 (default, 'Akasa', 'Economy', 'BOM', 'IND', '2023-12-12 12:12:00', '2023-12-12 15:12:00');

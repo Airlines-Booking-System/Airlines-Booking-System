@@ -64,11 +64,8 @@ function UserProfile(props) {
                 <div>
                     <button className="tweet" style={{"marginTop":"10px" }}>Update Profile </button>
                 </div>
-         </div>
-            
-
+            </div>
         </div>
-
         </>
     );
 }
