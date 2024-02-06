@@ -168,6 +168,7 @@ button{
     width: 440px;
 }
 
+
 .profileImage{
     object-fit: cover;
     height: 150px;
@@ -190,17 +191,36 @@ button{
     color:#888888;
 
 }
-.editDiv{
-    display: inline-block;
-    width: 60%;
-    margin-left:200px ;    
+
+
+.verticalCenter{
+    display:inline-block;
+    vertical-align:middle;
+    margin:0px;
+    position:absolute;
+    top:50% ;
+    transform:translateY(-50%);
 }
 
-.image{
-    display: inline-block;
-    vertical-align: middle ;
-    margin: 0px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+.borderStyle
+{
+    border-style: solid;
+    border-color:#888888 ;
+    border-radius: 9px;
+
+}
+
+.titleStyle
+{
+    font-family: 'Merriweather', sans-serif;
+    font-style: italic;
+    font-size: 30px;
+    /* text-decoration: underline; */
+    font-weight: normal;
+}
+
+.aboutPara{
+    text-justify: distribute;
+    font-weight: normal;
+    font-size: x-large;
 }

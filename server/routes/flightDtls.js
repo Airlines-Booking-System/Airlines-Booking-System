@@ -22,6 +22,7 @@ app.get("/", (req, res)=>{
             console.log(err);
         }
     });
+    connection.end();
 })
 
 module.exports = app;
