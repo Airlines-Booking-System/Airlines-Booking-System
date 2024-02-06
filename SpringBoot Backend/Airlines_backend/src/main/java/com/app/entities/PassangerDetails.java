@@ -4,5 +4,5 @@ import javax.persistence.Entity;
 
 @Entity
 public class PassangerDetails extends BaseEntity{
-
+    private Customers cid;
 }

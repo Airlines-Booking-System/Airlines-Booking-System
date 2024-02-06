@@ -1,23 +1,19 @@
 package com.app.entities;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class GeneralDetails{
 	
-	@OneToOne
-	private Customers customer;
-	
-	@OneToMany
-	private List<PassangerDetails> passangers;
+	@EmbeddedId
+	private GeneralDetailsCompositeKey compositeKey;
 	
 	@Column(nullable = false)
 	private LocalDate dob;
@@ -34,6 +30,6 @@ public class GeneralDetails{
 	@Enumerated(EnumType.STRING)
 	private GenderEnum gender;
 	
-//	@OneToOne
-//	private Integer pincode;
+	@OneToOne
+	private AddressDetails pincode;
 }
