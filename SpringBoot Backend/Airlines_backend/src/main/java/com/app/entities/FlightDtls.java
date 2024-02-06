@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,23 +26,30 @@ import lombok.ToString;
 public class FlightDtls {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@JsonProperty
 	private Integer id;
 	
 	@Column(nullable = false, length = 100)
+	@JsonProperty
 	private String name;
 	
 	@Column(nullable = false, length = 50)
+	@JsonProperty
 	private String flightClass;
 	
 	@Column(nullable = false, length = 100)
+	@JsonProperty
 	private String destination;
 	
 	@Column(nullable = false, length = 100)
+	@JsonProperty
 	private String source;
 	
 	@Column(nullable = false)
+	@JsonProperty
 	private LocalDateTime departure;
 	
 	@Column(nullable = false)
+	@JsonProperty
 	private LocalDateTime arrival;
 }

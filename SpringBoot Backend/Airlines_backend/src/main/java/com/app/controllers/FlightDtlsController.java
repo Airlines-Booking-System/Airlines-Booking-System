@@ -1,5 +1,26 @@
 package com.app.controllers;
 
-public class FlightDtlsController {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.entities.FlightDtls;
+import com.app.services.FlightDtlsService;
+import com.app.services.FlightDtlsServiceImpl;
+
+@RestController
+@RequestMapping("/flights")
+public class FlightDtlsController{
+	
+	@Autowired
+	private FlightDtlsService service;
+	
+	@GetMapping("/")
+	public List<FlightDtls> getAllFlights() {
+		return service.getAllFlights();
+	}
 }
