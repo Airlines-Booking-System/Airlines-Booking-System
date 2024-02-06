@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.entities.FlightDtls;
 import com.app.services.FlightDtlsService;
-import com.app.services.FlightDtlsServiceImpl;
 
 @RestController
 @RequestMapping("/flights")

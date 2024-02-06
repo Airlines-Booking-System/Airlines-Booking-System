@@ -23,12 +23,7 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @ToString
-public class FlightDtls {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonProperty
-	private Integer id;
-	
+public class FlightDtls extends BaseEntity {
 	@Column(nullable = false, length = 100)
 	@JsonProperty
 	private String name;
