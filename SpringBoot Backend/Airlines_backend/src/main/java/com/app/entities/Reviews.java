@@ -26,7 +26,7 @@ public class Reviews extends BaseEntity{
     private CustomersDetails customerId;
     
     @ManyToOne
-    private FlightDtls flightId;
+    private FlightDetails flightId;
 
     @Column(nullable = false)
     private LocalDateTime dateTime;

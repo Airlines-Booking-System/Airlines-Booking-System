@@ -2,8 +2,8 @@ package com.app.services;
 
 import java.util.List;
 
-import com.app.entities.FlightDtls;
+import com.app.entities.FlightDetails;
 
 public interface FlightDtlsService {
-	public List<FlightDtls> getAllFlights();
+	public List<FlightDetails> getAllFlights();
 }

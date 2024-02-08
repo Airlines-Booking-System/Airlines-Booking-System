@@ -2,8 +2,8 @@ package com.app.daos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.app.entities.FlightDtls;
+import com.app.entities.FlightDetails;
 
-public interface FlightDtlsDao extends JpaRepository<FlightDtls, Integer> {
+public interface FlightDtlsDao extends JpaRepository<FlightDetails, Integer> {
 
 }

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.daos.FlightDtlsDao;
-import com.app.entities.FlightDtls;
+import com.app.entities.FlightDetails;
 
 
 @Service
@@ -16,7 +16,7 @@ public class FlightDtlsServiceImpl implements FlightDtlsService {
 	private FlightDtlsDao dao;
 	
 	@Override
-	public List<FlightDtls> getAllFlights() {
+	public List<FlightDetails> getAllFlights() {
 		return dao.findAll();
 	}
 

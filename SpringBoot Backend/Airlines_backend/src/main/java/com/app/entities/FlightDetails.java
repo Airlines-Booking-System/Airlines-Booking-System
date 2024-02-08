@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -17,6 +18,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import net.bytebuddy.agent.builder.AgentBuilder.PoolStrategy.Eager;
 
 @Entity
 @Getter
@@ -25,7 +27,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class FlightDtls extends BaseEntity {
+public class FlightDetails extends BaseEntity {
 	@Column(nullable = false, length = 100)
 	@JsonProperty
 	private String name;
@@ -53,6 +55,6 @@ public class FlightDtls extends BaseEntity {
 	@OneToOne
 	private LuggageDetails luggageId;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	private List<Reviews> reviewId;
 }

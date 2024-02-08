@@ -30,7 +30,7 @@ public class BookingDetails extends BaseEntity {
     private PaymentDetails paymentID;
 
     @ManyToOne
-    private FlightDtls flightId;
+    private FlightDetails flightId;
 
     @Column(nullable = false)
     private double farePrice;
