@@ -1,10 +1,10 @@
 package com.app.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -20,16 +20,17 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class PassangerDetails extends BaseEntity{
-
-    @OneToOne
-    private BookingDetails bid;
-    
-    @Column(nullable = false, length = 50)
-    private String name;
+public class Reviews extends BaseEntity{
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
-    @Column(nullable = true)
     private CustomersDetails customerId;
+    
+    @ManyToOne
+    private FlightDtls flightId;
+
+    @Column(nullable = false)
+    private LocalDateTime dateTime;
+
+    @Column(nullable = false)
+    private String review;
 }

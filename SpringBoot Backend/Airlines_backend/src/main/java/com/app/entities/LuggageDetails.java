@@ -15,12 +15,12 @@ import lombok.ToString;
 @Setter 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class Customers extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED WITH SERIALIZABLE DUE TO INHERITANCE (BASE ENTITY)*/{
-	
-	@Column(nullable = false, length = 50)
-	private String cname;
-	@Column(nullable = false, length = 50)
-	private String cpass;
+public class LuggageDetails extends BaseEntity{
+    @Column(nullable = false)
+    private double maxWeight;
+
+    @Column(nullable = false)
+    private double additionalCharge;
 }

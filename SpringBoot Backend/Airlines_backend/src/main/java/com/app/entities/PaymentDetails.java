@@ -2,8 +2,8 @@ package com.app.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -20,16 +20,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class PassangerDetails extends BaseEntity{
-
+public class PaymentDetails extends BaseEntity {
     @OneToOne
-    private BookingDetails bid;
-    
-    @Column(nullable = false, length = 50)
-    private String name;
+    private BookingDetails bookingId;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    @Column(nullable = true)
-    private CustomersDetails customerId;
+    @Enumerated(EnumType.STRING)
+    private StatusEnum status;
+
+    @Column(nullable = false)
+    private double totalAmount;
 }

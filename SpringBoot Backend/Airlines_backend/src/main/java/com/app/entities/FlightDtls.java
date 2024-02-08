@@ -2,24 +2,29 @@ package com.app.entities;
 
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
 @Getter
-@Setter
+@Setter 
+@NoArgsConstructor
 @AllArgsConstructor
-@ToString
+@ToString(callSuper = true)
+@EqualsAndHashCode(callSuper = true)
 public class FlightDtls extends BaseEntity {
 	@Column(nullable = false, length = 100)
 	@JsonProperty
@@ -44,4 +49,10 @@ public class FlightDtls extends BaseEntity {
 	@Column(nullable = false)
 	@JsonProperty
 	private LocalDateTime arrival;
+
+	@OneToOne
+	private LuggageDetails luggageId;
+
+	@OneToMany
+	private List<Reviews> reviewId;
 }

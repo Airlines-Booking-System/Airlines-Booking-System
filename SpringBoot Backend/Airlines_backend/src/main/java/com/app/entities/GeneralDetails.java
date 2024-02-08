@@ -3,17 +3,31 @@ package com.app.entities;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
 @Entity
+@Getter
+@Setter 
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class GeneralDetails{
 	
-	@EmbeddedId
-	private GeneralDetailsCompositeKey compositeKey;
+	@OneToOne
+	@MapsId
+	private CustomersDetails cid;
 	
 	@Column(nullable = false)
 	private LocalDate dob;
