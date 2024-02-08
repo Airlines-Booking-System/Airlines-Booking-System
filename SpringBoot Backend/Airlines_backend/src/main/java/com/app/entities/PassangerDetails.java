@@ -30,6 +30,5 @@ public class PassangerDetails extends BaseEntity{
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    @Column(nullable = true)
     private CustomersDetails customerId;
 }

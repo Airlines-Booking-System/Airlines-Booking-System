@@ -2,9 +2,12 @@ package com.app.entities;
 
 import java.util.List;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -28,6 +31,9 @@ public class CustomersDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEME
 	@Column(nullable = false, length = 50)
 	private String cpass;
 
-	@OneToMany(mappedBy = "customer_id")
+	@OneToMany(mappedBy = "customerId")
 	private List<PassangerDetails> passangers;
+
+	@OneToOne(mappedBy = "customer")
+	private GeneralDetails generalDetails;
 }

@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
@@ -25,9 +27,13 @@ import lombok.ToString;
 @EqualsAndHashCode
 public class GeneralDetails{
 	
+	@Id
+	private Integer customerId;
+
 	@OneToOne
 	@MapsId
-	private CustomersDetails cid;
+	@JoinColumn(name = "customerId")
+	private CustomersDetails customer;
 	
 	@Column(nullable = false)
 	private LocalDate dob;
