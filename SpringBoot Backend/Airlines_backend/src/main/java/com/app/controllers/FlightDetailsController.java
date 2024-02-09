@@ -1,5 +1,6 @@
 package com.app.controllers;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ public class FlightDetailsController{
 	}
 
 	@PostMapping("/all")
-	public List<FlightDetails> postMethodName(@RequestBody String entity) {
-		return service.getAllFlights();
+	public List<FlightDetails> postMethodName(@RequestBody String toCity ,@RequestBody String fromCity,@RequestBody LocalDate date ) {
+		return service.getCustomeFlightDetails(toCity,fromCity,date);
 	}
 	
 }
