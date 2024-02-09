@@ -12,7 +12,7 @@ create table flight_dtls(
     arrival datetime
 );
 
-insert into flight_dtls (id, name, flight_class, destination, source, departure, arrival) values
+insert into flight_details (id, name, flight_class, destination, source, departure, arrival) values
 (default, 'Air Asia', 'Economy', 'BOM', 'PNQ', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
 (default, 'Akasa', 'Economy', 'PNQ', 'BOM', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
 (default, 'Indigo', 'Economy', 'HYD', 'BOM', '2023-12-12 12:12:00', '2023-12-12 15:12:00'),
