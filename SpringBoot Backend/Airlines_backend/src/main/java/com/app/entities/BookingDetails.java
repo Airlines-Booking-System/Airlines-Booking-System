@@ -24,7 +24,7 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class BookingDetails extends BaseEntity {
     @ManyToOne
-    private CustomersDetails customerId;
+    private UserDetails customerId;
 
     @OneToOne
     private PaymentDetails paymentID;

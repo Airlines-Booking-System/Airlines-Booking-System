@@ -5,7 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -23,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
-public class CustomersDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED WITH SERIALIZABLE DUE TO INHERITANCE (BASE ENTITY)*/{
+public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED WITH SERIALIZABLE DUE TO INHERITANCE (BASE ENTITY)*/{
 	
 	@Column(nullable = false, length = 50)
 	private String cname;
@@ -36,4 +37,6 @@ public class CustomersDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEME
 
 	@OneToOne(mappedBy = "customer")
 	private GeneralDetails generalDetails;
+	@Enumerated(EnumType.STRING)
+	private RoleEnum role;
 }
