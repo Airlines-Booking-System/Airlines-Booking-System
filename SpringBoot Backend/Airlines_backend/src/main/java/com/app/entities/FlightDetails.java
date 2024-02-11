@@ -54,6 +54,6 @@ public class FlightDetails extends BaseEntity {
 	@OneToOne
 	private LuggageDetails luggageId;
 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "flightId")
 	private List<Reviews> reviewId;
 }

@@ -17,8 +17,8 @@ function Home() {
     const [flights, setFilghts] = useState([]);
     const getFlights = ()=>{
         setSearchResult(true);
-        console.log(toCity);
-        const requestData = {to:toCity, from: fromCity, date:selectedDate}
+        const requestData = {toCity:toCity, fromCity: fromCity, departure:selectedDate+"T00:00:00.00Z"}
+        console.log(requestData);
         axios.post(serverUrl + "/flights/all", requestData).then((response)=>{
             setFilghts(response.data);
         })
