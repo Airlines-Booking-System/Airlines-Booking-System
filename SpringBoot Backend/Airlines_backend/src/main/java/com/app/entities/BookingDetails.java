@@ -4,6 +4,7 @@ import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
@@ -24,12 +25,15 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class BookingDetails extends BaseEntity {
     @ManyToOne
+    @JoinColumn(name="customerId")
     private UserDetails customerId;
 
     @OneToOne
+    @JoinColumn(name="paymentId")
     private PaymentDetails paymentID;
 
     @ManyToOne
+    @JoinColumn(name="flightId")
     private FlightDetails flightId;
 
     @Column(nullable = false)
