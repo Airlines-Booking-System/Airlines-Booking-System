@@ -25,10 +25,10 @@ public class FlightDetailsController{
 	@Autowired
 	private FlightDtlsService service;
 	
-	// @GetMapping("/all")
-	// public List<FlightDetails> getAllFlights() {
-	// 	return service.getAllFlights();
-	// }
+	@GetMapping("/all")
+	public List<FlightDetails> getAllFlights() {
+		return service.getAllFlights();
+	}
 
 	@PostMapping("/all")
 	public List<FlightDetails> postMethodName(@RequestBody FlightDetailsDTO details) {
