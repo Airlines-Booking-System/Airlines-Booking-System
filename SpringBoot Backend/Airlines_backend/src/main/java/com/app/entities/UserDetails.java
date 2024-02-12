@@ -9,7 +9,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.validation.constraints.Email;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -41,6 +40,7 @@ public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED 
 
 	@OneToOne(mappedBy = "customer")
 	private GeneralDetails generalDetails;
+	
 	@Enumerated(EnumType.STRING)
 	private RoleEnum role;
 }

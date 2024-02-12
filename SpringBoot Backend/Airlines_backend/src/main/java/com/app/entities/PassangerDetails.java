@@ -23,12 +23,10 @@ import lombok.ToString;
 public class PassangerDetails extends BaseEntity{
 
     @OneToOne
-    private BookingDetails bid;
+    private BookingDetails bookingid;
     
     @Column(nullable = false, length = 50)
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private UserDetails customerId;
+    
 }

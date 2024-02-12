@@ -1,9 +1,11 @@
 package com.app.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +23,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class PaymentDetails extends BaseEntity {
-    @OneToOne
+    @OneToOne(mappedBy = "paymentID", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private BookingDetails bookingId;
 
     @Enumerated(EnumType.STRING)

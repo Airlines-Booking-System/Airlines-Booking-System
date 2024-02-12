@@ -2,8 +2,10 @@ package com.app.entities;
 
 import java.time.LocalTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -24,24 +26,25 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class BookingDetails extends BaseEntity {
-    @ManyToOne
-    @JoinColumn(name="customerId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "customerId")
     private UserDetails customerId;
 
-    @OneToOne
-    @JoinColumn(name="paymentId")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "paymentId")
     private PaymentDetails paymentID;
 
-    @ManyToOne
-    @JoinColumn(name="flightId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "flightId")
     private FlightDetails flightId;
 
+    
     @Column(nullable = false)
     private double farePrice;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalTime duration;
 
     @Column(nullable = false)
-    private String seatNo;
+    private String seatno;
 }

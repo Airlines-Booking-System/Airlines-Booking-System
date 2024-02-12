@@ -2,6 +2,7 @@ package com.app.dtos;
 
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 public class BookFightDTO {
+    
     @JsonProperty("cid")
     private Integer cid;
 
@@ -26,6 +28,7 @@ public class BookFightDTO {
     @JsonProperty("farePrice")
     private double farePrice;
 
+     @JsonFormat(pattern = "HH:mm:ss")
     @JsonProperty("duration")
     private LocalTime duration;
 
