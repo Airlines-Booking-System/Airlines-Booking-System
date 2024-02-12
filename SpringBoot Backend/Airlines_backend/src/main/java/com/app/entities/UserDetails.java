@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
@@ -18,6 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import net.bytebuddy.agent.builder.AgentBuilder.PoolStrategy.Eager;
 
 @Entity
 @Getter
@@ -37,7 +39,7 @@ public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED 
 	@Column(nullable = false, length = 50)
 	private String cpass;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_details_id")  // Specify the foreign key column in PassangerDetails
     private List<PassangerDetails> passengers;
 
