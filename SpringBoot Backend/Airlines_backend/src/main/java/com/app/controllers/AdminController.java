@@ -17,28 +17,28 @@ public class AdminController {
     @Autowired
     private AdminService service;
 
-    @GetMapping("/viewallusers")
-    public String viewAllUsers(@RequestParam String param) {
-        service.viewAllUsers();
-        return new String();
-    }
+    // @GetMapping("/viewallusers")
+    // public String viewAllUsers(@RequestParam String param) {
+    //     service.viewAllUsers();
+    //     return new String();
+    // }
 
-    public String CreateFlight(){
+    // public String CreateFlight(){
 
-    }
+    // }
     
-    public String deleteFlight(){
+    // public String deleteFlight(){
 
-    }
-    public String editFlight(){
+    // }
+    // public String editFlight(){
 
-    }
+    // }
 
-    public String assignRoles(){
+    // public String assignRoles(){
 
-    }
+    // }
 
-    public String viewAllPayments(){}
+    // public String viewAllPayments(){}
     
     
 }
