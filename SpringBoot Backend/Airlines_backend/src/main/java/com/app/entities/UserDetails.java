@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -36,7 +38,8 @@ public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED 
 	private String cpass;
 
 	@OneToMany
-	private List<PassangerDetails> passangers;
+    @JoinColumn(name = "user_details_id")  // Specify the foreign key column in PassangerDetails
+    private List<PassangerDetails> passengers;
 
 	@OneToOne(mappedBy = "customer")
 	private GeneralDetails generalDetails;

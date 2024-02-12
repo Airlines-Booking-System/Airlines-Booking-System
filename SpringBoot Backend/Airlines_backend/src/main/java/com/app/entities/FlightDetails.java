@@ -51,9 +51,4 @@ public class FlightDetails extends BaseEntity {
 	@JsonProperty
 	private LocalDateTime arrival;
 
-	@OneToOne
-	private LuggageDetails luggageId;
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "flightId")
-	private List<Reviews> reviewId;
 }
