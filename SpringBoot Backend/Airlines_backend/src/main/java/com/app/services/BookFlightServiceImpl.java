@@ -107,6 +107,7 @@ public class BookFlightServiceImpl implements BookFlightService {
         userToUpdate.setEmail(dto.getEmail());
         userToUpdate.setName(dto.getName());
 
+        udao.editProfile(userToUpdate.getCpass(),userToUpdate.getEmail(),userToUpdate.getName());
 
 
         generalDetails.setAadhar(dto.getAadhar());
@@ -116,6 +117,7 @@ public class BookFlightServiceImpl implements BookFlightService {
         generalDetails.setMobileNumber(dto.getMobileNumber());
         generalDetails.setPincode(dto.getPincode());
 
+        gdao.editProfile(generalDetails.getAadhar(),generalDetails.getAddress(),generalDetails.getDob(),generalDetails.getGender(),generalDetails.getMobileNumber(),generalDetails.getPincode().getPincode());
 
     }
 }

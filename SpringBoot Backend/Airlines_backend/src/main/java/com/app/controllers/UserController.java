@@ -39,13 +39,13 @@ public class UserController {
     }
     
     @GetMapping("/cancelFlight/{id}")
-    public String cancelFlight(@RequestParam Integer id) {
+    public String cancelFlight(@RequestBody Integer id) {
         return service.cancelFlight(id);
     }
     
     
     @GetMapping("/editProfile")
-    public String editProfile(@RequestParam ViewProfileDTO dto) {
+    public String editProfile(@RequestBody ViewProfileDTO dto) {
         service.editProfile(dto);
         return new String();
     }
@@ -56,7 +56,7 @@ public class UserController {
     }
     
     @GetMapping("/addPassenger")
-    public String addPassenger(@RequestParam AddPassengerDTO dto) {
+    public String addPassenger(@RequestBody AddPassengerDTO dto) {
         return service.addPassenger(dto);
     }
     

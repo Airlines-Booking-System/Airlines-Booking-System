@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.app.daos.UserDao;
 import com.app.dtos.FlightDTO;
+import com.app.entities.FlightDetails;
 import com.app.entities.UserDetails;
 
 @Service
@@ -20,8 +21,37 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public String addFlight(FlightDTO flightToAdd) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'addFlight'");
+        uDao.addFlight(flightToAdd.getArrival(),flightToAdd.getDeparture(),flightToAdd.getDestination(),flightToAdd.getFlightClass(),flightToAdd.getName(),flightToAdd.getSource());
+        return "added successfully";
+    }
+    @Override
+    public String deleteFlight(Integer id) {
+        uDao.deleteById(id);
+        return "deleted succesfully";
+
+    }
+    @Override
+    public FlightDTO getFlightById(Integer id) {
+        FlightDetails flight= uDao.findFlightById(id);
+        FlightDTO dto=new FlightDTO();
+        dto.setArrival(flight.getArrival());
+        dto.setDeparture(flight.getDeparture());
+        dto.setDestination(flight.getDestination());
+        dto.setFlightClass(flight.getFlightClass());
+        dto.setName(flight.getName());
+        dto.setSource(flight.getSource());
+        return dto;
+    }
+    @Override
+    public String editFlight(FlightDTO flight) {
+        FlightDetails details=new FlightDetails();
+        details.setArrival(flight.getArrival());
+        details.setDeparture(flight.getDeparture());
+        details.setDestination(flight.getDestination());
+        details.setFlightClass(flight.getFlightClass());
+        details.setName(flight.getName());
+        details.setSource(flight.getSource());
+        return uDao.editFlight(details);
     }
     
 }
