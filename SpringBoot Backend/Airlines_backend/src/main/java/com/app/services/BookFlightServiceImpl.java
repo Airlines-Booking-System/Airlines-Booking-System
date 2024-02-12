@@ -48,7 +48,14 @@ public class BookFlightServiceImpl implements BookFlightService {
     @Override
     public BookFightDTO viewMyBookedFlights(Integer id) {
         BookingDetails d= dao.findById(id).get();
-        BookFightDTO dto=modelMapper.map(d, BookFightDTO.class);
+        BookFightDTO dto=new BookFightDTO();
+        dto.setId(d.getId());
+        dto.setCid(d.getCustomerId().getId());
+        dto.setDuration(d.getDuration());
+        dto.setFlightID(d.getFlightId().getId());
+        dto.setPaymentId(d.getPaymentID().getId());
+        dto.setSeatno(d.getSeatno());
+        dto.setFarePrice(d.getFarePrice());
         return dto;
     }
 

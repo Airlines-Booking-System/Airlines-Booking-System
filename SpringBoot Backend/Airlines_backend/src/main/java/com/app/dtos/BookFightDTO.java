@@ -2,6 +2,7 @@ package com.app.dtos;
 
 import java.time.LocalTime;
 
+import com.app.entities.UserDetails;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -21,8 +22,8 @@ public class BookFightDTO {
     @JsonProperty("cid")
     private Integer cid;
 
-    @JsonProperty("bookingID")
-    private Integer bookingID;
+    @JsonProperty("id")
+    private Integer id;
 
     @JsonProperty("flightID")
     private Integer flightID;
@@ -35,7 +36,7 @@ public class BookFightDTO {
     private LocalTime duration;
 
     @JsonProperty("Seatno")
-    private int Seatno;
+    private String Seatno;
 
     @JsonProperty("paymentId")
     private Integer paymentId;

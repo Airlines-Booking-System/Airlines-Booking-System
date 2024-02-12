@@ -28,27 +28,21 @@ import lombok.ToString;
 @EqualsAndHashCode(callSuper = true)
 public class FlightDetails extends BaseEntity {
 	@Column(nullable = false, length = 100)
-	@JsonProperty
 	private String name;
 	
 	@Column(nullable = false, length = 50)
-	@JsonProperty
 	private String flightClass;
 	
 	@Column(nullable = false, length = 100)
-	@JsonProperty
 	private String destination;
 	
 	@Column(nullable = false, length = 100)
-	@JsonProperty
 	private String source;
 	
 	@Column(nullable = false)
-	@JsonProperty
 	private LocalDateTime departure;
 	
 	@Column(nullable = false)
-	@JsonProperty
 	private LocalDateTime arrival;
 
 }

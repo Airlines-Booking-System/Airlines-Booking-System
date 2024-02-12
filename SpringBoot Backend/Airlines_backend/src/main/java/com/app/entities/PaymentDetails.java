@@ -23,7 +23,7 @@ import lombok.ToString;
 @ToString(callSuper = true)
 @EqualsAndHashCode(callSuper = true)
 public class PaymentDetails extends BaseEntity {
-    @OneToOne(mappedBy = "paymentID", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "paymentID", cascade = CascadeType.ALL)
     private BookingDetails bookingId;
 
     @Enumerated(EnumType.STRING)
