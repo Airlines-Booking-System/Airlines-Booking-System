@@ -2,7 +2,9 @@ package com.app.services;
 
 import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFightDTO;
+import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
+import com.app.entities.GeneralDetails;
 
 public interface BookFlightService {
 
@@ -12,8 +14,10 @@ public interface BookFlightService {
 
     String cancelFlight(Integer id);
 
-    BookingDetails viewProfile(Integer id);
+    ViewProfileDTO viewProfile(Integer id);
 
     String addPassenger(AddPassengerDTO dto);
+
+    void editProfile(ViewProfileDTO dto);
     
 }
