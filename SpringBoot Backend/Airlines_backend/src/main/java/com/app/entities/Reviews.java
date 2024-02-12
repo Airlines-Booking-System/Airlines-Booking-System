@@ -23,7 +23,7 @@ import lombok.ToString;
 public class Reviews extends BaseEntity{
 
     @ManyToOne
-    private CustomersDetails customerId;
+    private UserDetails customerId;
     
     @ManyToOne
     private FlightDetails flightId;

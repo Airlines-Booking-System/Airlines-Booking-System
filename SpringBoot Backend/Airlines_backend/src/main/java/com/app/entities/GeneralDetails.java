@@ -33,7 +33,7 @@ public class GeneralDetails{
 	@OneToOne
 	@MapsId
 	@JoinColumn(name = "customerId")
-	private CustomersDetails customer;
+	private UserDetails customer;
 	
 	@Column(nullable = false)
 	private LocalDate dob;
