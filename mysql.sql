@@ -24,18 +24,12 @@ insert into user_details (id,cpass,email,name,role) values (default,'Prachi123',
 
 insert into address_details(pincode, city, state) values (482001,'Jabalpur', 'MP'),(483001,'Ujjain', 'MP'), (484001,'Pune', 'Maharastra');
 
-insert into  general_details (customer_id,aadhar, address,dob,gender,mobile_number,pincode_pincode) values(1,'AA1','MP','2000-02-26','female','9999955555', 482001);
+insert into  general_details (customer_id,aadhar, address,dob,gender,mobile_number,pincode_pincode) values(1,'AA1','MP','2000-02-26','MALE','9999955555', 482001);
 
 insert into payment_details(status, total_amount) values('Successful', 5000.5);
 
-insert into booking_details(duration, fare_price, seatno, customer_id, flight_id, payment_id) values('01:00:00', 1000.2, 1, 1, 1, 1);
-
-//insert into booking_details(id,duration,fare_price,seat_no,customner_id, flight_id, paymentid_id, flight id) valuies(default, 3, 1000.00,10,1,1,1),(default, 4, 2000.00,11,2,2,2);
-
-//insert into payment_Details(id,status,total_amount,booking_id_id) values (default, 'Pending', 1000.00, 1),(default, 'Successful', 2000.00, 2);
+insert into booking_details(id,duration, fare_price, seatno, customer_id, flight_id, payment_id) values(default, '01:00:00', 1000.0,20, 1, 1, 1);
 
 
+insert into passanger_details(id,name,bookingid_id,user_details_id) values(default, 'Sagar',1,1); 
 
-
-
-insert into passanger_details(id,name,bid_id,customer_id) values(1,)
