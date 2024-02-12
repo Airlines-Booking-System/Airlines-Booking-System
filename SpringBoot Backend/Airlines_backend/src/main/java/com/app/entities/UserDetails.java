@@ -35,7 +35,7 @@ public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED 
 	@Column(nullable = false, length = 50)
 	private String cpass;
 
-	@OneToMany(mappedBy = "customerId")
+	@OneToMany
 	private List<PassangerDetails> passangers;
 
 	@OneToOne(mappedBy = "customer")
