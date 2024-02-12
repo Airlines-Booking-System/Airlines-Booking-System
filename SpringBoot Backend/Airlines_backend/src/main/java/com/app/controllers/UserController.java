@@ -5,7 +5,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFightDTO;
+import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
+import com.app.entities.GeneralDetails;
 import com.app.entities.PassangerDetails;
 import com.app.services.BookFlightService;
 
@@ -43,12 +45,13 @@ public class UserController {
     
     
     @GetMapping("/editProfile")
-    public String editProfile(@RequestParam String param) {
+    public String editProfile(@RequestParam ViewProfileDTO dto) {
+        service.editProfile(dto);
         return new String();
     }
 
     @GetMapping("/viewProfile/{id}")
-    public BookingDetails getMethodName(@PathVariable Integer id) {
+    public ViewProfileDTO getMethodName(@PathVariable Integer id) {
         return service.viewProfile(id); 
     }
     
