@@ -12,6 +12,7 @@ import com.app.daos.PaymentDtlsDao;
 import com.app.daos.UserDao;
 import com.app.dtos.FlightDTO;
 import com.app.dtos.PaymentDTO;
+import com.app.dtos.UserDTO;
 import com.app.entities.FlightDetails;
 import com.app.entities.PaymentDetails;
 import com.app.entities.UserDetails;
@@ -30,8 +31,18 @@ public class AdminServiceImpl implements AdminService{
     private ModelMapper modelMapper;
     @Override
 
-    public List<UserDetails> viewAllUsers() {
-        return uDao.findAllUsers();
+    public List<UserDTO> viewAllUsers() {
+        List<UserDTO> dtoList=new ArrayList<>();
+        List<UserDetails> list=uDao.findAllUsers();
+        for (UserDetails userDetails : list) {
+            UserDTO dto=new UserDTO();
+            dto.setCpass(userDetails.getCpass());
+            dto.setName(userDetails.getName());
+            dto.setEmail(userDetails.getEmail());
+            dto.setRole(userDetails.getRole());
+            dtoList.add(dto);
+        }
+        return dtoList;
     }
     @Override
     public String addFlight(FlightDTO flightToAdd) {
@@ -47,7 +58,7 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public String deleteFlight(Integer id) {
-        uDao.deleteById(id);
+        fDao.deleteById(id);
         return "deleted succesfully";
 
     }
@@ -65,6 +76,7 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public String editFlight(FlightDTO flight,Integer id) {
+        System.out.println("in service "+flight);
         FlightDetails details=new FlightDetails();
         details.setArrival(flight.getArrival());
         details.setDeparture(flight.getDeparture());

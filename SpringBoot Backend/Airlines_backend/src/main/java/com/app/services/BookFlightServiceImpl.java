@@ -6,7 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.daos.BookFlightDao;
+import com.app.daos.BookFightDao;
 import com.app.daos.FlightDtlsDao;
 import com.app.daos.GeneralDtlsDao;
 import com.app.daos.PassengerDao;
@@ -26,11 +26,11 @@ import com.app.entities.UserDetails;
 @Transactional
 public class BookFlightServiceImpl implements BookFlightService {
     @Autowired
-    private final BookFlightDao dao;
+    private  BookFightDao dao;
     @Autowired
-    private final PassengerDao pdao;
+    private  PassengerDao pdao;
     @Autowired
-    private final GeneralDtlsDao gdao;
+    private  GeneralDtlsDao gdao;
     @Autowired
     private UserDao udao;
     @Autowired
@@ -39,15 +39,9 @@ public class BookFlightServiceImpl implements BookFlightService {
     private PaymentDtlsDao paydao;
 
     @Autowired
-    private final ModelMapper modelMapper;
+    private  ModelMapper modelMapper;
 
   
-    public BookFlightServiceImpl(BookFlightDao dao, ModelMapper modelMapper,PassengerDao pdao,GeneralDtlsDao gdao) {
-        this.dao = dao;
-        this.modelMapper = modelMapper;
-        this.pdao=pdao;
-        this.gdao=gdao;
-    }
 
     @Override
     public BookingDetails bookFlight(BookFlightDTO bookFlightDto) { 
