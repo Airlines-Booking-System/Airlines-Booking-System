@@ -3,6 +3,7 @@ package com.app.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +25,18 @@ public class AdminServiceImpl implements AdminService{
     private FlightDtlsDao fDao;
     @Autowired 
     private PaymentDtlsDao pdao;
+
+    @Autowired
+    private ModelMapper modelMapper;
     @Override
+
     public List<UserDetails> viewAllUsers() {
         return uDao.findAllUsers();
     }
     @Override
     public String addFlight(FlightDTO flightToAdd) {
-        uDao.addFlight(flightToAdd.getArrival(),flightToAdd.getDeparture(),flightToAdd.getDestination(),flightToAdd.getFlightClass(),flightToAdd.getName(),flightToAdd.getSource());
+        FlightDetails details=modelMapper.map(flightToAdd, FlightDetails.class);
+        fDao.save(details);
         return "added successfully";
     }
     @Override

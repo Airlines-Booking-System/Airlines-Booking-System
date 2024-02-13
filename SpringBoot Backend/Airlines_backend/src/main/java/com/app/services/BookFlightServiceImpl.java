@@ -54,7 +54,9 @@ public class BookFlightServiceImpl implements BookFlightService {
         System.out.println(bookFlightDto);
 
         BookingDetails bookingDetails = new BookingDetails();
-
+        bookingDetails.setFarePrice(bookFlightDto.getFarePrice());
+        bookingDetails.setDuration(bookFlightDto.getDuration());
+        bookingDetails.setSeatno(bookFlightDto.getSeatno());
         UserDetails customer=udao.findCustomerById(bookFlightDto.getCid());
         bookingDetails.setCustomerId(customer);
         System.out.println(customer.getName());
