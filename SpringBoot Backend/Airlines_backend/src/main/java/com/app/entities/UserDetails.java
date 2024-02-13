@@ -24,7 +24,7 @@ import lombok.ToString;
 @Setter 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
+@ToString
 @EqualsAndHashCode(callSuper = true)
 public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED WITH SERIALIZABLE DUE TO INHERITANCE (BASE ENTITY)*/{
 	

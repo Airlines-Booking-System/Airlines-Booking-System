@@ -23,7 +23,7 @@ import lombok.ToString;
 @Setter 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
+@ToString
 @EqualsAndHashCode(callSuper = true)
 public class BookingDetails extends BaseEntity {
     @ManyToOne

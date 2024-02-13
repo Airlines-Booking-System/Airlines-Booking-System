@@ -34,8 +34,8 @@ public class BookFlightDTO {
     @JsonProperty("duration")
     private LocalTime duration;
 
-    @JsonProperty("Seatno")
-    private String Seatno;
+    @JsonProperty("seatno")
+    private String seatno;
 
     @JsonProperty("paymentId")
     private Integer paymentId;

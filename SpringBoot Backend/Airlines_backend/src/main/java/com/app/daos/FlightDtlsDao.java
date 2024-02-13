@@ -13,4 +13,7 @@ public interface FlightDtlsDao extends JpaRepository<FlightDetails, Integer> {
     @Query(value = "select * from flight_details where source = :toCity and destination = :fromCity and departure >= :departure", nativeQuery = true)
     List<FlightDetails> findByCityAndDate(@Param("toCity") String toCity,@Param("fromCity") String fromCity, @Param("departure") LocalDateTime departure);
 
+    @Query(value="select * from flight_details where id=:id",nativeQuery = true)
+    FlightDetails findFlightById(@Param("id")Integer id);
+
 }

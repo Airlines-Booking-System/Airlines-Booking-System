@@ -1,12 +1,16 @@
 package com.app.services;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.daos.BookFlightDao;
+import com.app.daos.FlightDtlsDao;
 import com.app.daos.GeneralDtlsDao;
 import com.app.daos.PassengerDao;
+import com.app.daos.PaymentDtlsDao;
 import com.app.daos.UserDao;
 import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFlightDTO;
@@ -19,6 +23,7 @@ import com.app.entities.PaymentDetails;
 import com.app.entities.UserDetails;
 
 @Service
+@Transactional
 public class BookFlightServiceImpl implements BookFlightService {
     @Autowired
     private final BookFlightDao dao;
@@ -28,6 +33,10 @@ public class BookFlightServiceImpl implements BookFlightService {
     private final GeneralDtlsDao gdao;
     @Autowired
     private UserDao udao;
+    @Autowired
+    private FlightDtlsDao fDao;
+    @Autowired
+    private PaymentDtlsDao paydao;
 
     @Autowired
     private final ModelMapper modelMapper;
@@ -48,14 +57,19 @@ public class BookFlightServiceImpl implements BookFlightService {
 
         UserDetails customer=udao.findCustomerById(bookFlightDto.getCid());
         bookingDetails.setCustomerId(customer);
+        System.out.println(customer.getName());
 
-        PaymentDetails payment=udao.findPaymentById(bookFlightDto.getPaymentId());
+        PaymentDetails payment=paydao.findPaymentById(bookFlightDto.getPaymentId());
         bookingDetails.setPaymentID(payment);
+        System.out.println(payment.getStatus());
 
-        FlightDetails flight=udao.findFlightById(bookFlightDto.getFlightID());
+
+        FlightDetails flight=fDao.findFlightById(bookFlightDto.getFlightID());
         bookingDetails.setFlightId(flight);
+         System.out.println(flight.getName());
 
         return dao.save(bookingDetails);
+
     }
 
     @Override

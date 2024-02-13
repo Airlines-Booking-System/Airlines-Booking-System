@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.daos.FlightDtlsDao;
+import com.app.daos.PaymentDtlsDao;
 import com.app.daos.UserDao;
 import com.app.dtos.FlightDTO;
 import com.app.dtos.PaymentDTO;
@@ -18,7 +20,10 @@ public class AdminServiceImpl implements AdminService{
 
     @Autowired
     private UserDao uDao;
-
+    @Autowired
+    private FlightDtlsDao fDao;
+    @Autowired 
+    private PaymentDtlsDao pdao;
     @Override
     public List<UserDetails> viewAllUsers() {
         return uDao.findAllUsers();
@@ -36,7 +41,7 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public FlightDTO getFlightById(Integer id) {
-        FlightDetails flight= uDao.findFlightById(id);
+        FlightDetails flight= fDao.findFlightById(id);
         FlightDTO dto=new FlightDTO();
         dto.setArrival(flight.getArrival());
         dto.setDeparture(flight.getDeparture());
@@ -60,7 +65,7 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public List<PaymentDTO> allPayments() {
-        List<PaymentDetails> list=uDao.getAllPayments();
+        List<PaymentDetails> list=pdao.getAllPayments();
         List<PaymentDTO> dto=new ArrayList<>();
         for (PaymentDetails p : list) {
             PaymentDTO d=new PaymentDTO();
