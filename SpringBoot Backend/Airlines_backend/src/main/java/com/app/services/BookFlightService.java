@@ -1,16 +1,15 @@
 package com.app.services;
 
 import com.app.dtos.AddPassengerDTO;
-import com.app.dtos.BookFightDTO;
+import com.app.dtos.BookFlightDTO;
 import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
-import com.app.entities.GeneralDetails;
 
 public interface BookFlightService {
 
-    BookingDetails bookFlight(BookFightDTO bookFlightDto);
+    BookingDetails bookFlight(BookFlightDTO bookFlightDto);
 
-    BookFightDTO viewMyBookedFlights(Integer id);
+    BookFlightDTO viewMyBookedFlights(Integer id);
 
     String cancelFlight(Integer id);
 

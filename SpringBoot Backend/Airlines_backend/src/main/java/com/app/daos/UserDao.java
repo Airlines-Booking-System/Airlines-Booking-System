@@ -22,13 +22,19 @@ public interface UserDao extends JpaRepository<UserDetails,Integer> {
     @Query(value="select * from flight_details where id=:id",nativeQuery = true)
     FlightDetails findFlightById(@Param("id")Integer id);
 
-    @Query(value="")
-    String editFlight(FlightDetails details);
+    // @Query(value="")
+    // String editFlight();
 
     @Query(value = "update user_details set cpass=:cpass, email=:email, name=:name , role=:role",nativeQuery = true)
     void editProfile(@Param("cpass") String cpass,@Param("email")String email,@Param("name")String name);
 
     @Query(value="select * from payment_details",nativeQuery = true)
     List<PaymentDetails> getAllPayments();
+
+    @Query(value="select * from user_details where id=:cid",nativeQuery = true)
+    UserDetails findCustomerById(@Param("cid")Integer cid);
+
+    @Query(value="select * from payment_details where id=:pid",nativeQuery = true)
+    PaymentDetails findPaymentById(@Param("pid")Integer paymentId);
     
 }

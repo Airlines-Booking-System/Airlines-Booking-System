@@ -2,15 +2,10 @@ package com.app.dtos;
 
 import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.OneToOne;
 
 import com.app.entities.AddressDetails;
 import com.app.entities.BookingDetails;
 import com.app.entities.GenderEnum;
-import com.app.entities.UserDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

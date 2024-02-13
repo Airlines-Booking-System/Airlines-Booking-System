@@ -2,7 +2,6 @@ package com.app.dtos;
 
 import java.time.LocalTime;
 
-import com.app.entities.UserDetails;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -17,7 +16,7 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookFightDTO {
+public class BookFlightDTO {
     
     @JsonProperty("cid")
     private Integer cid;

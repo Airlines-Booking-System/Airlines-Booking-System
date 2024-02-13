@@ -55,7 +55,8 @@ public class AdminServiceImpl implements AdminService{
         details.setFlightClass(flight.getFlightClass());
         details.setName(flight.getName());
         details.setSource(flight.getSource());
-        return uDao.editFlight(details);
+        // uDao.editFlight();
+        return null;
     }
     @Override
     public List<PaymentDTO> allPayments() {

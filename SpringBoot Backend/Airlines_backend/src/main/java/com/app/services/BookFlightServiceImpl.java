@@ -4,22 +4,24 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.app.daos.BookFightDao;
+import com.app.daos.BookFlightDao;
 import com.app.daos.GeneralDtlsDao;
 import com.app.daos.PassengerDao;
 import com.app.daos.UserDao;
 import com.app.dtos.AddPassengerDTO;
-import com.app.dtos.BookFightDTO;
+import com.app.dtos.BookFlightDTO;
 import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
+import com.app.entities.FlightDetails;
 import com.app.entities.GeneralDetails;
 import com.app.entities.PassangerDetails;
+import com.app.entities.PaymentDetails;
 import com.app.entities.UserDetails;
 
 @Service
 public class BookFlightServiceImpl implements BookFlightService {
     @Autowired
-    private final BookFightDao dao;
+    private final BookFlightDao dao;
     @Autowired
     private final PassengerDao pdao;
     @Autowired
@@ -31,7 +33,7 @@ public class BookFlightServiceImpl implements BookFlightService {
     private final ModelMapper modelMapper;
 
   
-    public BookFlightServiceImpl(BookFightDao dao, ModelMapper modelMapper,PassengerDao pdao,GeneralDtlsDao gdao) {
+    public BookFlightServiceImpl(BookFlightDao dao, ModelMapper modelMapper,PassengerDao pdao,GeneralDtlsDao gdao) {
         this.dao = dao;
         this.modelMapper = modelMapper;
         this.pdao=pdao;
@@ -39,16 +41,27 @@ public class BookFlightServiceImpl implements BookFlightService {
     }
 
     @Override
-    public BookingDetails bookFlight(BookFightDTO bookFlightDto) { 
+    public BookingDetails bookFlight(BookFlightDTO bookFlightDto) { 
         System.out.println(bookFlightDto);
-        BookingDetails bookingDetails = modelMapper.map(bookFlightDto, BookingDetails.class);
+
+        BookingDetails bookingDetails = new BookingDetails();
+
+        UserDetails customer=udao.findCustomerById(bookFlightDto.getCid());
+        bookingDetails.setCustomerId(customer);
+
+        PaymentDetails payment=udao.findPaymentById(bookFlightDto.getPaymentId());
+        bookingDetails.setPaymentID(payment);
+
+        FlightDetails flight=udao.findFlightById(bookFlightDto.getFlightID());
+        bookingDetails.setFlightId(flight);
+
         return dao.save(bookingDetails);
     }
 
     @Override
-    public BookFightDTO viewMyBookedFlights(Integer id) {
+    public BookFlightDTO viewMyBookedFlights(Integer id) {
         BookingDetails d= dao.findById(id).get();
-        BookFightDTO dto=new BookFightDTO();
+        BookFlightDTO dto=new BookFlightDTO();
         dto.setId(d.getId());
         dto.setCid(d.getCustomerId().getId());
         dto.setDuration(d.getDuration());

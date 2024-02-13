@@ -4,17 +4,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AddPassengerDTO;
-import com.app.dtos.BookFightDTO;
+import com.app.dtos.BookFlightDTO;
 import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
-import com.app.entities.GeneralDetails;
-import com.app.entities.PassangerDetails;
 import com.app.services.BookFlightService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -27,14 +24,14 @@ public class UserController {
     private BookFlightService service;
 
     @PostMapping("/bookFlight")
-    public BookingDetails postMethodName(@RequestBody BookFightDTO bookFlightDto) {
+    public BookingDetails postMethodName(@RequestBody BookFlightDTO bookFlightDto) {
         System.out.println("here  "+bookFlightDto);
         return service.bookFlight(bookFlightDto);
     }
 
 
     @GetMapping("/viewBookedFlights/{id}")
-    public BookFightDTO viewBookedFlights(@PathVariable Integer id) {
+    public BookFlightDTO viewBookedFlights(@PathVariable Integer id) {
         return service.viewMyBookedFlights(id);
     }
     
