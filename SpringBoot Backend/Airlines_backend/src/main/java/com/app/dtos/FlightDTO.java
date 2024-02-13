@@ -2,7 +2,6 @@ package com.app.dtos;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Column;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
