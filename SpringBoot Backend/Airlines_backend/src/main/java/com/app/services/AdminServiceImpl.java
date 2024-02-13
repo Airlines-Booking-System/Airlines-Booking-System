@@ -35,7 +35,13 @@ public class AdminServiceImpl implements AdminService{
     }
     @Override
     public String addFlight(FlightDTO flightToAdd) {
-        FlightDetails details=modelMapper.map(flightToAdd, FlightDetails.class);
+        FlightDetails details=new FlightDetails();
+        details.setArrival(flightToAdd.getArrival());
+        details.setDeparture(flightToAdd.getDeparture());
+        details.setDestination(flightToAdd.getDestination());
+        details.setFlightClass(flightToAdd.getFlightClass());
+        details.setName(flightToAdd.getName());
+        details.setSource(flightToAdd.getSource());
         fDao.save(details);
         return "added successfully";
     }
@@ -58,7 +64,7 @@ public class AdminServiceImpl implements AdminService{
         return dto;
     }
     @Override
-    public String editFlight(FlightDTO flight) {
+    public String editFlight(FlightDTO flight,Integer id) {
         FlightDetails details=new FlightDetails();
         details.setArrival(flight.getArrival());
         details.setDeparture(flight.getDeparture());
@@ -66,8 +72,8 @@ public class AdminServiceImpl implements AdminService{
         details.setFlightClass(flight.getFlightClass());
         details.setName(flight.getName());
         details.setSource(flight.getSource());
-        // uDao.editFlight();
-        return null;
+        fDao.editFlight(flight.getArrival(),flight.getDeparture(),flight.getDestination(),flight.getFlightClass(),flight.getName(),flight.getSource(),id);
+        return "edited successfully";
     }
     @Override
     public List<PaymentDTO> allPayments() {

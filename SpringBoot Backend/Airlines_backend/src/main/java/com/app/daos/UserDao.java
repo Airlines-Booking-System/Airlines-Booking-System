@@ -16,13 +16,7 @@ public interface UserDao extends JpaRepository<UserDetails,Integer> {
     @Query(value = "select * from user_details",nativeQuery = true)
     List<UserDetails> findAllUsers();
 
-    @Query(value="insert into flight_details values(default,:arrival,:departure,:destination,:flightclass,:name,:source)" ,nativeQuery = true)
-    void addFlight(@Param("arrival") LocalDateTime localDateTime,@Param("departure")LocalDateTime localDateTime2,@Param("destination")String destination,@Param("flightclass")String flightclass,@Param("name") String name,@Param("source") String source);
-
    
-    // @Query(value="")
-    // String editFlight();
-
     @Query(value = "update user_details set cpass=:cpass, email=:email, name=:name , role=:role",nativeQuery = true)
     void editProfile(@Param("cpass") String cpass,@Param("email")String email,@Param("name")String name);
 

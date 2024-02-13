@@ -33,6 +33,7 @@ public class AdminController {
     
     @PostMapping("/createflight")
     public String CreateFlight(@RequestBody FlightDTO flightToAdd){
+        System.out.println(flightToAdd);
         return service.addFlight(flightToAdd);
     }
     
@@ -41,9 +42,9 @@ public class AdminController {
         return service.deleteFlight(id);
 
     }
-    @PostMapping("/editFlight")
-    public String editFlight(@RequestBody FlightDTO flight){
-        return service.editFlight(flight);
+    @PostMapping("/editFlight/{id}")
+    public String editFlight(@RequestBody FlightDTO flight,@PathVariable Integer id){
+        return service.editFlight(flight,id);
     }
     @GetMapping("/getflight/{id}")
     public FlightDTO getFlight(@PathVariable Integer id){

@@ -16,4 +16,8 @@ public interface FlightDtlsDao extends JpaRepository<FlightDetails, Integer> {
     @Query(value="select * from flight_details where id=:id",nativeQuery = true)
     FlightDetails findFlightById(@Param("id")Integer id);
 
+   
+    @Query(value="update flight_details set arrival=:arrival,departure=:departure,destination=:destination,flight_class=:flight_class,name=:name,source=:source where id=:id",nativeQuery = true)
+    Integer editFlight(@Param("arrival")LocalDateTime arrival, @Param("departure")LocalDateTime departure, @Param("destination")String destination, @Param("flight_class")String flight_class, @Param("name")String name, @Param("source")String source,@Param("id")Integer id);
+
 }

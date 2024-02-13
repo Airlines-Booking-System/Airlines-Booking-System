@@ -17,19 +17,20 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FlightDTO {
+	@JsonProperty("name")
     private String name;
-	@JsonProperty
+	@JsonProperty("flight_class")
 	private String flightClass;
 	
-	@JsonProperty
+	@JsonProperty("destination")
 	private String destination;
 	
-	@JsonProperty
+	@JsonProperty("source")
 	private String source;
 	
-	@JsonProperty
+	@JsonProperty("departure")
 	private LocalDateTime departure;
 	
-	@JsonProperty
+	@JsonProperty("arrival")
 	private LocalDateTime arrival;
 }

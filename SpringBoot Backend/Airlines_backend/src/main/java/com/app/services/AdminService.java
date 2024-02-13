@@ -17,7 +17,7 @@ public interface AdminService {
 
     FlightDTO getFlightById(Integer id);
 
-    String editFlight(FlightDTO flight);
+    String editFlight(FlightDTO flight,Integer id);
 
      List<PaymentDTO> allPayments();
     
