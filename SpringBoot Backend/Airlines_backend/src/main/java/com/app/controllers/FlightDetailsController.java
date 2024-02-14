@@ -3,7 +3,9 @@ package com.app.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,13 +25,13 @@ public class FlightDetailsController{
 	@Autowired
 	private FlightDtlsService service;
 	
-	// @GetMapping("/all")
-	// public List<FlightDetails> getAllFlights() {
-	// 	return service.getAllFlights();
-	// }
+	@GetMapping("/all")
+	public List<FlightDetails> getAllFlights() {
+		return service.getAllFlights();
+	}
 
 	@PostMapping("/all")
-	public List<FlightDetails> postMethodName(@RequestBody FlightDetailsDTO details) {
+	public ResponseEntity<List<FlightDetails>> postMethodName(@RequestBody FlightDetailsDTO details) {
 		System.out.println(details);
 		return service.getCustomeFlightDetails(details.getToCity(), details.getFromCity(), details.getDeparture());
 	}

@@ -10,6 +10,8 @@ import com.app.entities.BookingDetails;
 import com.app.services.BookFlightService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,9 +26,10 @@ public class UserController {
     private BookFlightService service;
 
     @PostMapping("/bookFlight")
-    public BookingDetails postMethodName(@RequestBody BookFlightDTO bookFlightDto) {
+    public ResponseEntity<BookingDetails> postMethodName(@RequestBody BookFlightDTO bookFlightDto) {
         System.out.println("here  "+bookFlightDto);
-        return service.bookFlight(bookFlightDto);
+
+        return new ResponseEntity<>(service.bookFlight(bookFlightDto),HttpStatus.OK);
     }
 
 
