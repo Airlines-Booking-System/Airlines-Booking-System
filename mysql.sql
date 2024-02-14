@@ -26,7 +26,7 @@ insert into address_details(pincode, city, state) values (482001,'Jabalpur', 'MP
 
 insert into  general_details (customer_id,aadhar, address,dob,gender,mobile_number,pincode_pincode) values(1,'AA1','MP','2000-02-26','MALE','9999955555', 482001);
 
-insert into payment_details(status, total_amount) values('Successful', 5000.5);
+insert into payment_details(status, total_amount, customer_id) values('Successful', 5000.5, 1);
 
 insert into booking_details(id,duration, fare_price, seatno, customer_id, flight_id, payment_id) values(default, '01:00:00', 1000.0,20, 1, 1, 1);
 

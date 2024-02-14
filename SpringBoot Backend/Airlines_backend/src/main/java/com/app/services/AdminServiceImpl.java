@@ -3,6 +3,8 @@ package com.app.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,6 +28,9 @@ public class AdminServiceImpl implements AdminService{
     private FlightDtlsDao fDao;
     @Autowired 
     private PaymentDtlsDao pdao;
+
+    @Autowired
+    private UserDao udao;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -75,6 +80,7 @@ public class AdminServiceImpl implements AdminService{
         return dto;
     }
     @Override
+    @Transactional
     public String editFlight(FlightDTO flight,Integer id) {
         System.out.println("in service "+flight);
         FlightDetails details=new FlightDetails();
@@ -87,6 +93,7 @@ public class AdminServiceImpl implements AdminService{
         fDao.editFlight(flight.getArrival(),flight.getDeparture(),flight.getDestination(),flight.getFlightClass(),flight.getName(),flight.getSource(),id);
         return "edited successfully";
     }
+
     @Override
     public List<PaymentDTO> allPayments() {
         List<PaymentDetails> list=pdao.getAllPayments();
@@ -101,5 +108,22 @@ public class AdminServiceImpl implements AdminService{
         }
         return dto;
     }
+    @Override
+    public List<PaymentDTO> getPaymentByCid(Integer cid) {
+        System.out.println("\nExecuting findby cid()\n");
+        List<PaymentDetails> paymentEntityList = pdao.findByCustomerId(udao.findCustomerById(cid));
+        List<PaymentDTO> paymentDTOList = new ArrayList<>();
+        for(PaymentDetails ps : paymentEntityList){
+            PaymentDTO temp = new PaymentDTO();
+            temp.setTotalAmount(ps.getTotalAmount());
+            temp.setFlightName(ps.getBookingId().getFlightId().getName());
+            temp.setStatus(ps.getStatus());
+            temp.setUserName(ps.getCustomerId().getName());
+            paymentDTOList.add(temp);
+        }
+        return paymentDTOList;
+    }
+
+    
     
 }

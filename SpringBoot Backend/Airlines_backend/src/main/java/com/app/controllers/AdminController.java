@@ -16,7 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -45,7 +48,7 @@ public class AdminController {
         return service.deleteFlight(id);
 
     }
-    @PostMapping("/editFlight/{id}")
+    @PutMapping("/editFlight/{id}") //DONE
     public String editFlight(@RequestBody FlightDTO flight,@PathVariable Integer id){
         System.out.println(flight);
         System.out.println(id);
@@ -59,10 +62,16 @@ public class AdminController {
     // public String assignRoles(){
 
     // }
-    @GetMapping("/allpayment")
+    @GetMapping("/allpayment") //DONE
     public List<PaymentDTO> viewAllPayments(){
         return service.allPayments();
     }
+
+    @GetMapping("/getPaymentByCid/{cid}") //DONE
+    public List<PaymentDTO> getMethodName(@PathVariable Integer cid) {
+        return service.getPaymentByCid(cid);
+    }
+    
     
     
 }

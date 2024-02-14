@@ -30,7 +30,7 @@ public class BookingDetails extends BaseEntity {
     @JoinColumn(name = "customerId")
     private UserDetails customerId;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "paymentId")
     private PaymentDetails paymentID;
 

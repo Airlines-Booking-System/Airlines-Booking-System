@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +26,10 @@ import lombok.ToString;
 public class PaymentDetails extends BaseEntity {
     @OneToOne(mappedBy = "paymentID", cascade = CascadeType.ALL)
     private BookingDetails bookingId;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private UserDetails customerId;
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;

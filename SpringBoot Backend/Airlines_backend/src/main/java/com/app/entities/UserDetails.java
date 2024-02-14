@@ -1,5 +1,6 @@
 package com.app.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,11 +40,14 @@ public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED 
 
 	@OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_details_id")  // Specify the foreign key column in PassangerDetails
-    private List<PassangerDetails> passengers;
+    private List<PassangerDetails> passengers = new ArrayList<>();
 
 	@OneToOne(mappedBy = "customer")
 	private GeneralDetails generalDetails;
 	
 	@Enumerated(EnumType.STRING)
 	private RoleEnum role;
+
+	@OneToMany(mappedBy = "customerId")
+	private List<PaymentDetails> paymentID = new ArrayList<>();
 }
