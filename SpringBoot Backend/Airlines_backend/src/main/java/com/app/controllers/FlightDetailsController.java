@@ -26,8 +26,8 @@ public class FlightDetailsController{
 	private FlightDtlsService service;
 	
 	@GetMapping("/all")
-	public List<FlightDetails> getAllFlights() {
-		return service.getAllFlights();
+	public ResponseEntity<?> getAllFlights() {
+		return ResponseEntity.ok(service.getAllFlights());
 	}
 
 	@PostMapping("/all")
