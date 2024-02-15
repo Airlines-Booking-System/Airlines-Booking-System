@@ -28,7 +28,7 @@ public class AdminController {
     @Autowired
     private AdminService service;
 
-    @GetMapping("/viewallusers")//done
+    @GetMapping("/viewallusers")//done //tested
     public ResponseEntity<?> viewAllUsers() {
         System.out.println(service.viewAllUsers());
         List<UserDTO> list = service.viewAllUsers();
@@ -37,28 +37,28 @@ public class AdminController {
         
     }
     
-    @PostMapping("/createflight")//done
+    @PostMapping("/createflight")//done //tested
     public ResponseEntity<?> CreateFlight(@RequestBody FlightDTO flightToAdd){
         System.out.println(flightToAdd);
         System.out.println("\n ADDED FLIGHT: " + service.addFlight(flightToAdd));
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     
-    @GetMapping("/deleteflight/{id}")//done
+    @GetMapping("/deleteflight/{id}")//done //tested
     public ResponseEntity<?> deleteFlight(@PathVariable Integer id){
         System.out.println(id);
         System.out.println("\n\n" + service.deleteFlight(id));
         return ResponseEntity.ok().build();
 
     }
-    @PutMapping("/editFlight/{id}") //DONE
+    @PutMapping("/editFlight/{id}") //DONE //tested
     public ResponseEntity<?> editFlight(@RequestBody FlightDTO flight,@PathVariable Integer id){
         System.out.println(flight);
         System.out.println(id);
         System.out.println("\n\n" + service.editFlight(flight,id));
         return ResponseEntity.ok().build();
     }
-    @GetMapping("/getflight/{id}")//done
+    @GetMapping("/getflight/{id}")//done //tested
     public ResponseEntity<?> getFlight(@PathVariable Integer id){
         return ResponseEntity.ok(service.getFlightById(id));
     }
@@ -66,12 +66,12 @@ public class AdminController {
     // public String assignRoles(){
 
     // }
-    @GetMapping("/allpayment") //DONE
+    @GetMapping("/allpayment") //DONE //tested
     public ResponseEntity<?> viewAllPayments(){
         return ResponseEntity.ok(service.allPayments());
     }
 
-    @GetMapping("/getPaymentByCid/{cid}") //DONE
+    @GetMapping("/getPaymentByCid/{cid}") //DONE //tested
     public ResponseEntity<?> getMethodName(@PathVariable Integer cid) {
         return ResponseEntity.ok(service.getPaymentByCid(cid));
     }

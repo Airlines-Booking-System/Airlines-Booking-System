@@ -93,7 +93,8 @@ public class BookFlightServiceImpl implements BookFlightService {
         return ResponseEntity.ok(dtoList);
     }
 
-    @Override
+    @Override // HttpMessageNotReadableException: Required request body is missing: public
+              // org.springframework.http.ResponseEntity<?> com.app.controllers.
     public ResponseEntity<BookFlightDTO> cancelFlight(Integer id) {
         BookingDetails temp = dao.findById(id).orElseThrow();
         BookFlightDTO flightToBeDeleted = new BookFlightDTO();

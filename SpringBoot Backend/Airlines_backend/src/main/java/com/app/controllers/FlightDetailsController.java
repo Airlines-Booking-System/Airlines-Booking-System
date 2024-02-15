@@ -30,7 +30,7 @@ public class FlightDetailsController{
 		return ResponseEntity.ok(service.getAllFlights());
 	}
 
-	@PostMapping("/all")
+	@PostMapping("/all") //done//tested
 	public ResponseEntity<List<FlightDetails>> postMethodName(@RequestBody FlightDetailsDTO details) {
 		System.out.println(details);
 		return service.getCustomeFlightDetails(details.getToCity(), details.getFromCity(), details.getDeparture());
