@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.modelmapper.ModelMapper;
+// import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,10 +32,10 @@ public class AdminServiceImpl implements AdminService{
     @Autowired
     private UserDao udao;
 
-    @Autowired
-    private ModelMapper modelMapper;
-    @Override
+    // @Autowired
+    // private ModelMapper modelMapper;
 
+    @Override
     public List<UserDTO> viewAllUsers() {
         List<UserDTO> dtoList=new ArrayList<>();
         List<UserDetails> list=uDao.findAllUsers();
@@ -82,6 +82,7 @@ public class AdminServiceImpl implements AdminService{
     @Override
     @Transactional
     public String editFlight(FlightDTO flight,Integer id) {
+        if(fDao.findFlightById(id) == null) throw new RuntimeException("Resource not found");
         System.out.println("in service "+flight);
         FlightDetails details=new FlightDetails();
         details.setArrival(flight.getArrival());

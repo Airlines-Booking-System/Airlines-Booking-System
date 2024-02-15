@@ -10,7 +10,6 @@ import com.app.entities.BookingDetails;
 import com.app.services.BookFlightService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,34 +28,33 @@ public class UserController {
     public ResponseEntity<BookingDetails> postMethodName(@RequestBody BookFlightDTO bookFlightDto) {
         System.out.println("here  "+bookFlightDto);
 
-        return new ResponseEntity<>(service.bookFlight(bookFlightDto),HttpStatus.OK);
+        return service.bookFlight(bookFlightDto);
     }
 
 
     @GetMapping("/viewBookedFlights/{id}")
-    public BookFlightDTO viewBookedFlights(@PathVariable Integer id) {
+    public ResponseEntity<?> viewBookedFlights(@PathVariable Integer id) {
         return service.viewMyBookedFlights(id);
     }
     
     @GetMapping("/cancelFlight/{id}")
-    public String cancelFlight(@RequestBody Integer id) {
+    public ResponseEntity<?> cancelFlight(@RequestBody Integer id) {
         return service.cancelFlight(id);
     }
     
     
     @GetMapping("/editProfile")
-    public String editProfile(@RequestBody ViewProfileDTO dto) {
-        service.editProfile(dto);
-        return new String();
+    public ResponseEntity<?> editProfile(@RequestBody ViewProfileDTO dto) {
+        return service.editProfile(dto);
     }
 
     @GetMapping("/viewProfile/{id}")
-    public ViewProfileDTO getMethodName(@PathVariable Integer id) {
+    public ResponseEntity<?> getMethodName(@PathVariable Integer id) {
         return service.viewProfile(id); 
     }
     
     @GetMapping("/addPassenger")
-    public String addPassenger(@RequestBody AddPassengerDTO dto) {
+    public ResponseEntity<?> addPassenger(@RequestBody AddPassengerDTO dto) {
         return service.addPassenger(dto);
     }
     

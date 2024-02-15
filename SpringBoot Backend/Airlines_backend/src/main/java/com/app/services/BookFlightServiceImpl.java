@@ -1,12 +1,17 @@
 package com.app.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.app.daos.BookFightDao;
+import com.app.daos.BookingDtlsDao;
 import com.app.daos.FlightDtlsDao;
 import com.app.daos.GeneralDtlsDao;
 import com.app.daos.PassengerDao;
@@ -25,12 +30,13 @@ import com.app.entities.UserDetails;
 @Service
 @Transactional
 public class BookFlightServiceImpl implements BookFlightService {
+
     @Autowired
-    private  BookFightDao dao;
+    private BookingDtlsDao dao;
     @Autowired
-    private  PassengerDao pdao;
+    private PassengerDao pdao;
     @Autowired
-    private  GeneralDtlsDao gdao;
+    private GeneralDtlsDao gdao;
     @Autowired
     private UserDao udao;
     @Autowired
@@ -44,7 +50,7 @@ public class BookFlightServiceImpl implements BookFlightService {
   
 
     @Override
-    public BookingDetails bookFlight(BookFlightDTO bookFlightDto) { 
+    public ResponseEntity<BookingDetails> bookFlight(BookFlightDTO bookFlightDto) { 
         System.out.println(bookFlightDto);
 
         BookingDetails bookingDetails = new BookingDetails();
@@ -64,32 +70,46 @@ public class BookFlightServiceImpl implements BookFlightService {
         bookingDetails.setFlightId(flight);
          System.out.println(flight.getName());
 
-        return dao.save(bookingDetails);
+        return ResponseEntity.ok(dao.save(bookingDetails));
 
     }
 
     @Override
-    public BookFlightDTO viewMyBookedFlights(Integer id) {
-        BookingDetails d= dao.findById(id).get();
-        BookFlightDTO dto=new BookFlightDTO();
-        dto.setId(d.getId());
-        dto.setCid(d.getCustomerId().getId());
-        dto.setDuration(d.getDuration());
-        dto.setFlightID(d.getFlightId().getId());
-        dto.setPaymentId(d.getPaymentID().getId());
-        dto.setSeatno(d.getSeatno());
-        dto.setFarePrice(d.getFarePrice());
-        return dto;
+    public ResponseEntity<List<BookFlightDTO>> viewMyBookedFlights(Integer id) {
+        List<BookingDetails> dtemp= dao.findByCustomerId(udao.findCustomerById(id));
+
+        List<BookFlightDTO> dtoList = new ArrayList<>();
+        for(BookingDetails d : dtemp){
+            BookFlightDTO dto=new BookFlightDTO();
+            dto.setId(d.getId());
+            dto.setCid(d.getCustomerId().getId());
+            dto.setDuration(d.getDuration());
+            dto.setFlightID(d.getFlightId().getId());
+            dto.setPaymentId(d.getPaymentID().getId());
+            dto.setSeatno(d.getSeatno());
+            dto.setFarePrice(d.getFarePrice());
+            dtoList.add(dto);
+        }
+        return ResponseEntity.ok(dtoList);
     }
 
     @Override
-    public String cancelFlight(Integer id) {
+    public ResponseEntity<BookFlightDTO> cancelFlight(Integer id) {
+        BookingDetails temp = dao.findById(id).orElseThrow();
+        BookFlightDTO flightToBeDeleted = new BookFlightDTO();
+        flightToBeDeleted.setCid(temp.getCustomerId().getId());
+        flightToBeDeleted.setDuration(temp.getDuration());
+        flightToBeDeleted.setFarePrice(temp.getFarePrice());
+        flightToBeDeleted.setFlightID(temp.getFlightId().getId());
+        flightToBeDeleted.setId(temp.getId());
+        flightToBeDeleted.setPaymentId(temp.getPaymentID().getId());
+        flightToBeDeleted.setSeatno(temp.getSeatno());
         dao.deleteById(id);
-        return "success";
+        return ResponseEntity.status(HttpStatus.GONE).build();
     }
 
     @Override
-    public ViewProfileDTO viewProfile(Integer id) {
+    public ResponseEntity<ViewProfileDTO> viewProfile(Integer id) {
         UserDetails details= udao.findById(id).get();
         GeneralDetails generalDetails=gdao.findByCustomerId(id);
         ViewProfileDTO dto=modelMapper.map(details, ViewProfileDTO.class);
@@ -98,11 +118,11 @@ public class BookFlightServiceImpl implements BookFlightService {
         dto.setDob(generalDetails.getDob());
         dto.setMobileNumber(generalDetails.getMobileNumber());
         dto.setPincode(generalDetails.getPincode());
-        return dto;
+        return ResponseEntity.ok(dto);
     }
 
     @Override
-    public String addPassenger(AddPassengerDTO dto) {
+    public ResponseEntity<AddPassengerDTO> addPassenger(AddPassengerDTO dto) {
         PassangerDetails passenger=new PassangerDetails();
         passenger.setBookingid(dto.getBookingid());
         passenger.setName(dto.getName());
@@ -118,12 +138,12 @@ public class BookFlightServiceImpl implements BookFlightService {
         generalDetails.setPincode(dto.getPincode());
         pdao.save(passenger);
         gdao.save(generalDetails);
-        return "done";
+        return ResponseEntity.ok(dto);
         
     }
 
     @Override
-    public void editProfile(ViewProfileDTO dto) {
+    public ResponseEntity<ViewProfileDTO> editProfile(ViewProfileDTO dto) {
         UserDetails userToUpdate=new UserDetails();
         GeneralDetails generalDetails=new GeneralDetails();
         userToUpdate.setCpass(dto.getCpass());
@@ -141,6 +161,6 @@ public class BookFlightServiceImpl implements BookFlightService {
         generalDetails.setPincode(dto.getPincode());
 
         gdao.editProfile(generalDetails.getAadhar(),generalDetails.getAddress(),generalDetails.getDob(),generalDetails.getGender(),generalDetails.getMobileNumber(),generalDetails.getPincode().getPincode());
-
+        return ResponseEntity.ok(dto);
     }
 }

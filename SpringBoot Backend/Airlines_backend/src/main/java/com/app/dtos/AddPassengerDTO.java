@@ -2,6 +2,9 @@ package com.app.dtos;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.app.entities.AddressDetails;
 import com.app.entities.BookingDetails;
@@ -11,6 +14,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -22,6 +26,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class AddPassengerDTO {
     @JsonProperty("customerId")
+    @NonNull
     private Integer customerId;
     @JsonProperty("customer")
     private UserDetails customer;
@@ -30,8 +35,11 @@ public class AddPassengerDTO {
     @JsonProperty("address")
 	private String address;
 	@JsonProperty("mobileNumber")
+    @Length(max = 10, min = 10)
 	private String mobileNumber;
 	@JsonProperty("aadhar")
+    @NonNull
+    @Length(min = 12, max = 12)
 	private String aadhar;
     @JsonProperty("gender")
 	private GenderEnum gender;
@@ -40,5 +48,6 @@ public class AddPassengerDTO {
     @JsonProperty("bookingId")
     private BookingDetails bookingid;
     @JsonProperty("name")
+    @NotBlank
     private String name;
 }

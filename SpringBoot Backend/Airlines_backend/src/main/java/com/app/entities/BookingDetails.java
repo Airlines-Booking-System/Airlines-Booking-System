@@ -2,7 +2,6 @@ package com.app.entities;
 
 import java.time.LocalTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 

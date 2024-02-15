@@ -1,5 +1,9 @@
 package com.app.services;
 
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+
 import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFlightDTO;
 import com.app.dtos.ViewProfileDTO;
@@ -7,16 +11,16 @@ import com.app.entities.BookingDetails;
 
 public interface BookFlightService {
 
-    BookingDetails bookFlight(BookFlightDTO bookFlightDto);
+    ResponseEntity<BookingDetails> bookFlight(BookFlightDTO bookFlightDto);
 
-    BookFlightDTO viewMyBookedFlights(Integer id);
+    ResponseEntity<List<BookFlightDTO>> viewMyBookedFlights(Integer id);
 
-    String cancelFlight(Integer id);
+    ResponseEntity<BookFlightDTO> cancelFlight(Integer id);
 
-    ViewProfileDTO viewProfile(Integer id);
+    ResponseEntity<ViewProfileDTO> viewProfile(Integer id);
 
-    String addPassenger(AddPassengerDTO dto);
+    ResponseEntity<AddPassengerDTO> addPassenger(AddPassengerDTO dto);
 
-    void editProfile(ViewProfileDTO dto);
+    ResponseEntity<ViewProfileDTO> editProfile(ViewProfileDTO dto);
     
 }

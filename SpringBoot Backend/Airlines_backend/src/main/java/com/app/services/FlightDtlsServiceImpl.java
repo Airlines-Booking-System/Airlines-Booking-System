@@ -3,6 +3,8 @@ package com.app.services;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +15,7 @@ import com.app.entities.FlightDetails;
 
 
 @Service
+@Transactional
 public class FlightDtlsServiceImpl implements FlightDtlsService {
 
 	@Autowired
