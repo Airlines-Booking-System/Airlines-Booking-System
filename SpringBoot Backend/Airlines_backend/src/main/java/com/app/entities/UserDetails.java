@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -40,14 +39,17 @@ public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED 
 
 	@OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_details_id")  // Specify the foreign key column in PassangerDetails
-    private List<PassangerDetails> passengers = new ArrayList<>();
+    private List<PassengerDetails> passengers = new ArrayList<>();
 
-	@OneToOne(mappedBy = "customer")
-	private GeneralDetails generalDetails;
+	// @OneToOne(mappedBy = "customer")
+	// private GeneralDetails generalDetails;
 	
 	@Enumerated(EnumType.STRING)
 	private RoleEnum role;
 
 	@OneToMany(mappedBy = "customerId")
 	private List<PaymentDetails> paymentID = new ArrayList<>();
+
+	@OneToMany
+	private List<PassengerDetails> passengerId;
 }

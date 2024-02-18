@@ -2,12 +2,13 @@ package com.app.entities;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import lombok.AllArgsConstructor;
@@ -21,29 +22,18 @@ import lombok.ToString;
 @Setter 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
-public class GeneralDetails extends BaseEntity{
+@ToString(callSuper = true)
+public class PassengerDetails extends BaseEntity{
+    
+    @Column(nullable = false, length = 50)
+    private String name;
 
-	@OneToOne
-	@MapsId
-	@JoinColumn(name = "customerId")
-	private UserDetails customer;
-	
-	@Column(nullable = false)
+    @Column(nullable = false)
 	private LocalDate dob;
-	
-	@Column(nullable = false, length = 100)
-	private String address;
-	
-	@Column(nullable = false, length = 10)
-	private String mobileNumber;
-	
-	@Column(nullable = false, length = 12)
+
+    @Column(nullable = false, length = 12)
 	private String aadhar;
-	
-	@Enumerated(EnumType.STRING)
+
+    @Enumerated(EnumType.STRING)
 	private GenderEnum gender;
-	
-	@OneToOne
-	private AddressDetails pincode;
 }

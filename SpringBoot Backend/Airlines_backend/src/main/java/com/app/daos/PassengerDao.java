@@ -2,8 +2,8 @@ package com.app.daos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.app.entities.PassangerDetails;
+import com.app.entities.PassengerDetails;
 
-public interface PassengerDao extends JpaRepository<PassangerDetails,Integer>{
+public interface PassengerDao extends JpaRepository<PassengerDetails,Integer>{
     
 }

@@ -11,10 +11,14 @@ import com.app.services.BookFlightService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -24,41 +28,44 @@ public class UserController {
     @Autowired
     private BookFlightService service;
 
-    @PostMapping("/bookFlight")
-    public ResponseEntity<BookingDetails> postMethodName(@RequestBody BookFlightDTO bookFlightDto) {
+    @PostMapping("/bookFlight") // DONE ++
+    public ResponseEntity<?> postMethodName(@RequestBody BookFlightDTO bookFlightDto) {
         System.out.println("here  "+bookFlightDto);
 
         return service.bookFlight(bookFlightDto);
     }
 
 
-    @GetMapping("/viewBookedFlights/{id}")
+    @GetMapping("/viewBookedFlights/{id}") // DONE ++
     public ResponseEntity<?> viewBookedFlights(@PathVariable Integer id) {
         return service.viewMyBookedFlights(id);
     }
     
-    @GetMapping("/cancelFlight/{id}")
-    public ResponseEntity<?> cancelFlight(@RequestBody Integer id) {
+    @DeleteMapping("/cancelFlight/{id}") // DONE ++
+    public ResponseEntity<?> cancelFlight(@PathVariable Integer id) {
         return service.cancelFlight(id);
     }
     
     
-    @GetMapping("/editProfile")
-    public ResponseEntity<?> editProfile(@RequestBody ViewProfileDTO dto) {
-        return service.editProfile(dto);
+    @PutMapping("/editProfile/{id}") // DONE 
+    public ResponseEntity<?> editProfile(@RequestBody ViewProfileDTO dto, @PathVariable Integer id) {
+        return service.editProfile(dto, id);
     }
 
-    @GetMapping("/viewProfile/{id}")
-    public ResponseEntity<?> getMethodName(@PathVariable Integer id) {
+    @GetMapping("/viewProfile/{id}") // DONE
+    public ResponseEntity<?> viewProfileById(@PathVariable Integer id) {
         return service.viewProfile(id); 
     }
     
-    @GetMapping("/addPassenger")
-    public ResponseEntity<?> addPassenger(@RequestBody AddPassengerDTO dto) {
-        return service.addPassenger(dto);
+    @PostMapping("/addPassenger/{cid}") // DONE!
+    public ResponseEntity<?> addPassenger(@RequestBody AddPassengerDTO dto, @PathVariable Integer cid) {
+        return service.addPassenger(dto, cid);
     }
-    
 
+    @GetMapping("/viewPassengers/{cid}") // DONE!
+    public ResponseEntity<?> viewPassengers(@PathVariable Integer cid) {
+        return service.viewPassengers(cid);
+    }
     
     
 }

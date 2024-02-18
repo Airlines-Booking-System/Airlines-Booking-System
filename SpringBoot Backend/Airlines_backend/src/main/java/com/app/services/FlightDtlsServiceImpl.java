@@ -5,13 +5,19 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.app.daos.FlightDtlsDao;
+import com.app.daos.GeneralDtlsDao;
+import com.app.daos.UserDao;
+import com.app.dtos.AddUserDTO;
 import com.app.entities.FlightDetails;
+import com.app.entities.GeneralDetails;
+import com.app.entities.UserDetails;
 
 
 @Service
@@ -19,7 +25,16 @@ import com.app.entities.FlightDetails;
 public class FlightDtlsServiceImpl implements FlightDtlsService {
 
 	@Autowired
+	ModelMapper modelMapper;
+
+	@Autowired
 	private FlightDtlsDao dao;
+
+	@Autowired
+	private UserDao userDao;
+
+	@Autowired
+	private GeneralDtlsDao generalDtlsDao;
 	
 	@Override
 	public List<FlightDetails> getAllFlights() {
@@ -37,6 +52,22 @@ public class FlightDtlsServiceImpl implements FlightDtlsService {
 			return new ResponseEntity<>(list,HttpStatus.OK);
 		}
 		//System.out.println(list);
+	}
+
+
+
+	@Override
+	public ResponseEntity<?> addUser(AddUserDTO user) {
+		UserDetails userDetails = modelMapper.map(user, UserDetails.class);
+		GeneralDetails generalDetails = modelMapper.map(user, GeneralDetails.class);
+		userDao.save(userDetails);
+		System.out.println("\n\n USER ADDED \n\n");
+		System.out.println("\n\n" + userDetails + "\n\n");
+		System.out.println("\n\n ADDING General DETAILS \n\n");
+		generalDtlsDao.save(generalDetails);
+		
+		System.out.println("\n\n" + generalDetails + "\n\n");
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 
 
