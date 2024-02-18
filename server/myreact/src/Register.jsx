@@ -27,7 +27,8 @@ function UserProfile(props) {
         
         <div className="container"  style={{"textAlign":"center" ,"marginTop":"10px"}}>
             
-          <div className="restDiv" style={{"textAlign":"left", "backgroundRepeat":"no-repeat","backgroundSize":"fill","backgroundImage":"url(planepic.jpeg)"}} >
+          {/* <div className="restDiv" style={{"textAlign":"left", "backgroundRepeat":"no-repeat","backgroundSize":"fill","backgroundImage":"url(planepic.jpeg)"}} > */}
+          <div className="restDiv" style={{"textAlign":"left"}}>
                 <div>
                     <p  className="myfont"> Full Name : </p>
                     <input type="text" className="searchBox myfont greyText" />
@@ -62,7 +63,7 @@ function UserProfile(props) {
                 </div>
 
                 <div>
-                    <button className="tweet" style={{"marginTop":"10px" }}>Update Profile </button>
+                    <button className="tweet" style={{"marginTop":"10px" }}>Create Profile </button>
                 </div>
             </div>
         </div>

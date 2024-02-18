@@ -4,10 +4,11 @@ import "../src/Home.css"
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "../node_modules/react-datepicker/dist/react-datepicker.css"
-// import {Link, Switch, Route} from 'react-router-dom';
+import { Navigate, useNavigate } from "react-router-dom";
 
 
 function Profile(props) {
+    const navigate = useNavigate();
         const [passenger,setpassenger]=useState([]);
         const serverUrl="";
 
@@ -66,7 +67,7 @@ function Profile(props) {
             </div>
             <hr />
             <div>
-                <button className="tweet" style={{"marginTop":"10px" }}>Edit Profile </button>
+                <button className="tweet" style={{"marginTop":"10px" }} onClick={()=>{navigate("/editprofile")}}>Edit Profile </button>
 
             </div>
             </div>

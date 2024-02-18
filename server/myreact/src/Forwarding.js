@@ -6,22 +6,22 @@ import EditProfile from "./EditProfile"
 import Login from "./Login"
 import Register from "./Register"
 import About from "./About"
-import {Link, Switch, Route} from 'react-router-dom'
+import {Link, Routes, Route} from 'react-router-dom'
 
 
 function Forwarding(){
+
     return(
         <>
             <nav className="navbar navbar-expand-lg" style={{"backgroundColor":"white"}}>
                 <div className="container-fluid">
                     <Link to="/home" className="navbar-brand logoFont" style={{"color":"black"}}>FlyHigh</Link>
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">                    <span className="navbar-toggler-icon"></span>
                     </button>
                     <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                        {/* <a className="nav-link active myfont" aria-current="page" href="" style={{"color":"black"}}>Login</a> */}
+                        {/* <a className="nav-link active myfont" aria-current="page" href="/login" style={{"color":"black"}}>Login</a> */}
                         <Link to="/login" className="nav-link myfont" style={{"color":"black"}}>Login</Link>
                         </li>
                         <li className="nav-item">
@@ -40,16 +40,16 @@ function Forwarding(){
                     </div>
                 </div>
             </nav>
-            <Switch>
-                <Route path="/" exact component={Home}/>
-                <Route path="/home" exact component={Home}/>
-                <Route path="/profile" exact component={Profile}/>
-                <Route path="/editprofile" exact component={EditProfile}/>
-                <Route path="/register" exact component={Register}/> 
-                <Route path="/login" exact component={Login}/>
-                <Route path="/about" exact component={About}/>
+            <Routes>
+                <Route path="/"  element={<Home/>}/>
+                <Route path="/home" element={<Home/>}/>
+                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/editprofile" element={<EditProfile/>}/>
+                <Route path="/register" element={<Register/>}/> 
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/about" element={<About/>}/>
 
-            </Switch>
+            </Routes>
         </>
     );
 }
