@@ -5,18 +5,19 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-// import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.app.daos.FlightDtlsDao;
 import com.app.daos.PaymentDtlsDao;
+import com.app.daos.SeatDetailsDao;
 import com.app.daos.UserDao;
 import com.app.dtos.FlightDTO;
 import com.app.dtos.PaymentDTO;
 import com.app.dtos.UserDTO;
 import com.app.entities.FlightDetails;
 import com.app.entities.PaymentDetails;
+import com.app.entities.SeatDetails;
 import com.app.entities.UserDetails;
 
 @Service
@@ -31,6 +32,9 @@ public class AdminServiceImpl implements AdminService{
 
     @Autowired
     private UserDao udao;
+
+    @Autowired
+    private SeatDetailsDao seatDao;
 
     // @Autowired
     // private ModelMapper modelMapper;
@@ -58,7 +62,17 @@ public class AdminServiceImpl implements AdminService{
         details.setFlightClass(flightToAdd.getFlightClass());
         details.setName(flightToAdd.getName());
         details.setSource(flightToAdd.getSource());
+        details.setFarePrice(flightToAdd.getFarePrice());
         fDao.save(details);
+        List<SeatDetails> seatList = new ArrayList<>();
+        for(int i = 1; i <= 50; i++){
+            SeatDetails seat = new SeatDetails();
+            seat.setAvailable(true);
+            seat.setFlightId(details);
+            seat.setSeatNo("AB" + i);
+            seatList.add(seat);
+        }
+        seatDao.saveAll(seatList);
         return "added successfully";
     }
     @Override

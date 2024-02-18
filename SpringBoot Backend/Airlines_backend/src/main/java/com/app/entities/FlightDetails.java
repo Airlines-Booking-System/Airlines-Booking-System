@@ -40,4 +40,6 @@ public class FlightDetails extends BaseEntity {
 	@Column(nullable = false)
 	private LocalDateTime arrival;
 
+	private double farePrice;
+
 }

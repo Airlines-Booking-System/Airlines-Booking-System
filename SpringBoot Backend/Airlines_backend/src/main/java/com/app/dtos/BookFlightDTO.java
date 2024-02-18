@@ -1,6 +1,7 @@
 package com.app.dtos;
 
 import java.time.LocalTime;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -27,17 +28,16 @@ public class BookFlightDTO {
     @JsonProperty("flightID")
     private Integer flightID;
 
-    @JsonProperty("farePrice")
-    private double farePrice;
-
-     @JsonFormat(pattern = "HH:mm:ss")
-    @JsonProperty("duration")
-    private LocalTime duration;
-
-    @JsonProperty("seatno")
-    private String seatno;
-
     @JsonProperty("paymentId")
     private Integer paymentId;
+
+    @JsonProperty("seatNo")
+    private List<String> seatNo;
+
+    @JsonProperty("passengerId")
+    private List<Integer> passengerid;
+
+    @JsonProperty("passengerNames") // this is only for view booked tickets
+    private List<String> passangerNames;
     
 }

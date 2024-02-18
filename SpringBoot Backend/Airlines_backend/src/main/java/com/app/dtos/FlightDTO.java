@@ -33,4 +33,8 @@ public class FlightDTO {
 	
 	@JsonProperty("arrival")
 	private LocalDateTime arrival;
+
+	@JsonProperty("farePrice")
+	private double farePrice;
 }
+

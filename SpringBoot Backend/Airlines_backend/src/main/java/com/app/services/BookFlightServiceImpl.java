@@ -1,5 +1,6 @@
 package com.app.services;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,20 +18,26 @@ import com.app.daos.FlightDtlsDao;
 import com.app.daos.GeneralDtlsDao;
 import com.app.daos.PassengerDao;
 import com.app.daos.PaymentDtlsDao;
+import com.app.daos.SeatDetailsDao;
 import com.app.daos.UserDao;
 import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFlightDTO;
+import com.app.dtos.SeatDTO;
 import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
 import com.app.entities.FlightDetails;
 import com.app.entities.GeneralDetails;
 import com.app.entities.PassengerDetails;
 import com.app.entities.PaymentDetails;
+import com.app.entities.SeatDetails;
 import com.app.entities.UserDetails;
 
 @Service
 @Transactional
 public class BookFlightServiceImpl implements BookFlightService {
+
+    @Autowired
+    private SeatDetailsDao seatDao;
 
     @Autowired
     private BookingDtlsDao bdao;
@@ -52,7 +59,7 @@ public class BookFlightServiceImpl implements BookFlightService {
     private PaymentDtlsDao paydao;
 
     @Autowired
-    private  ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
   
 
@@ -60,9 +67,12 @@ public class BookFlightServiceImpl implements BookFlightService {
     public ResponseEntity<BookFlightDTO> bookFlight(BookFlightDTO bookFlightDto) { 
         System.out.println("\n\n----------------\n" + bookFlightDto);
         BookingDetails bookingDetails = new BookingDetails();
-        bookingDetails.setFarePrice(bookFlightDto.getFarePrice());
-        bookingDetails.setDuration(bookFlightDto.getDuration());
-        bookingDetails.setSeatno(bookFlightDto.getSeatno());
+        FlightDetails currentFlight = fDao.findById(bookFlightDto.getFlightID()).orElseThrow();
+        bookingDetails.setFarePrice(currentFlight.getFarePrice());
+        bookingDetails.setDuration(LocalTime.ofSecondOfDay(currentFlight.getArrival().toLocalTime().toSecondOfDay()-currentFlight.getDeparture().toLocalTime().toSecondOfDay()));
+        if (!bookFlightDto.getPassengerid().isEmpty()){
+            bookingDetails.setPassengerId(pdao.findAllById(bookFlightDto.getPassengerid()));
+        }
         UserDetails customer=udao.findCustomerById(bookFlightDto.getCid());
         bookingDetails.setCustomerId(customer);
         // System.out.println(customer.getName());
@@ -73,10 +83,18 @@ public class BookFlightServiceImpl implements BookFlightService {
 
 
         FlightDetails flight=fDao.findFlightById(bookFlightDto.getFlightID());
+        System.out.println("\n\n DTO: " + bookFlightDto +"\n\n");
         bookingDetails.setFlightId(flight);
         //  System.out.println(flight.getName());
-        
         dao.save(bookingDetails);
+        System.out.println("\n\n" + bookingDetails.getId() + "\n\n");
+        for(String seat : bookFlightDto.getSeatNo()){
+            seatDao.updateSeatDetails(flight.getId(), seat, bookingDetails.getId());
+        }
+        // System.out.println("\n\n LIST SEAT: " + seatsBooked+"\n\n");
+        
+
+        
 
         return new ResponseEntity<>(bookFlightDto, HttpStatus.CREATED);
     }
@@ -90,12 +108,30 @@ public class BookFlightServiceImpl implements BookFlightService {
             BookFlightDTO dto=new BookFlightDTO();
             dto.setId(d.getId());
             dto.setCid(d.getCustomerId().getId());
-            dto.setDuration(d.getDuration());
+            // dto.setDuration(LocalTime.ofSecondOfDay(d.getFlightId().getDeparture().toLocalTime().toSecondOfDay()-d.getFlightId().getArrival().toLocalTime().toSecondOfDay()));
             dto.setFlightID(d.getFlightId().getId());
             dto.setPaymentId(d.getPaymentID().getId());
-            dto.setSeatno(d.getSeatno());
-            dto.setFarePrice(d.getFarePrice());
+            System.out.println("\n\n" + "1" + "\n\n");
+            List<PassengerDetails> plist = d.getPassengerId();
+            System.out.println("\n\n" + "2" + "\n\n");
+            List<String> names = new ArrayList<>();
+            for(PassengerDetails passenger:plist){
+                names.add(passenger.getName());
+            }
+            System.out.println("\n\n" + "3" + "\n\n");
+            dto.setPassangerNames(names);
+            System.out.println("\n\n" + "4" + "\n\n");
             dtoList.add(dto);
+            System.out.println("\n\n" + "5" + "\n\n");
+            List<SeatDetails> seats = seatDao.findByBookingId(d);
+            System.out.println("\n\n" + "6" + "\n\n");
+            List<String> seatStr = new ArrayList<>();
+            for(SeatDetails seat:seats){
+                seatStr.add(seat.getSeatNo());
+            }
+            System.out.println("\n\n" + "7" + "\n\n");
+            dto.setSeatNo(seatStr);
+            System.out.println("\n\n" + "FINISH" + "\n\n");
         }
         return ResponseEntity.ok(dtoList);
     }
@@ -175,4 +211,16 @@ public class BookFlightServiceImpl implements BookFlightService {
         }
         return ResponseEntity.status(HttpStatus.OK).body(passList);
     }
+
+    @Override
+    public ResponseEntity<?> getAvailableSeats(Integer flightId) {
+        List<SeatDetails> seat = seatDao.findByIsAvailableAndFlightId(true, fDao.findFlightById(flightId));
+        List<SeatDTO> seatList = new ArrayList<>();
+        for(SeatDetails s : seat){
+            seatList.add(modelMapper.map(s, SeatDTO.class));
+        }
+        System.out.println("\n\n\n LIST: " + seatList + "\n\n\n");
+        return ResponseEntity.ok().body(seatList);
+    }
+
 }

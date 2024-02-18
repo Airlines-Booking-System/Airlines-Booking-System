@@ -28,7 +28,13 @@ public class UserController {
     @Autowired
     private BookFlightService service;
 
-    @PostMapping("/bookFlight") // DONE ++
+    @GetMapping("/getAvailabeSeats/{flightId}")
+    public ResponseEntity<?> getAvailableSeats(@PathVariable Integer flightId) {
+        return service.getAvailableSeats(flightId);
+    }
+    
+
+    @PostMapping("/bookFlight") // TESTED!!!!!!
     public ResponseEntity<?> postMethodName(@RequestBody BookFlightDTO bookFlightDto) {
         System.out.println("here  "+bookFlightDto);
 

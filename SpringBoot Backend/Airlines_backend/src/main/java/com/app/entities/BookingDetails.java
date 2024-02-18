@@ -42,15 +42,11 @@ public class BookingDetails extends BaseEntity {
     @JoinColumn(name = "flightId")
     private FlightDetails flightId;
 
-    
     @Column(nullable = false)
     private double farePrice;
 
     @Column(nullable = true)
     private LocalTime duration;
-
-    @Column(nullable = false)
-    private String seatno;
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinTable(inverseJoinColumns = @JoinColumn(name = "passenger_id"))

@@ -24,5 +24,9 @@ public interface BookFlightService {
     ResponseEntity<ViewProfileDTO> editProfile(ViewProfileDTO dto, Integer id);
 
     ResponseEntity<?> viewPassengers(Integer cid);
+
+    ResponseEntity<?> getAvailableSeats(Integer flightId);
+
+    
     
 }
