@@ -84,4 +84,12 @@ public class FlightDtlsServiceImpl implements FlightDtlsService {
 
 
 
+	@Override
+	public ResponseEntity<?> getFlightById(Integer id) {
+		FlightDetails temp = dao.findById(id).orElseThrow();
+		return ResponseEntity.status(HttpStatus.OK).body(temp);
+	}
+
+	
+
 }

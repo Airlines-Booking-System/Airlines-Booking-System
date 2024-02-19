@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 
 import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFlightDTO;
+import com.app.dtos.PaymentDTO;
 import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
 
@@ -26,6 +27,8 @@ public interface BookFlightService {
     ResponseEntity<?> viewPassengers(Integer cid);
 
     ResponseEntity<?> getAvailableSeats(Integer flightId);
+
+    ResponseEntity<?> makePayment(PaymentDTO paymentDTO);
 
     
     

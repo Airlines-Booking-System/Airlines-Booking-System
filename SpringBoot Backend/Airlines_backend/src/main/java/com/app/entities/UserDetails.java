@@ -39,7 +39,7 @@ public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED 
 
 	@OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_details_id")  // Specify the foreign key column in PassangerDetails
-    private List<PassengerDetails> passengers = new ArrayList<>();
+    private List<PassengerDetails> passengerId = new ArrayList<>();
 
 	// @OneToOne(mappedBy = "customer")
 	// private GeneralDetails generalDetails;
@@ -50,6 +50,6 @@ public class UserDetails extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED 
 	@OneToMany(mappedBy = "customerId")
 	private List<PaymentDetails> paymentID = new ArrayList<>();
 
-	@OneToMany
-	private List<PassengerDetails> passengerId;
+	// @OneToMany
+	// private List<PassengerDetails> passengerId;
 }

@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFlightDTO;
+import com.app.dtos.PaymentDTO;
 import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
 import com.app.services.BookFlightService;
@@ -72,6 +73,12 @@ public class UserController {
     public ResponseEntity<?> viewPassengers(@PathVariable Integer cid) {
         return service.viewPassengers(cid);
     }
+
+    @PostMapping("/makePayment")
+    public ResponseEntity<?> makePayment(@RequestBody PaymentDTO paymentDTO) {
+        return service.makePayment(paymentDTO);
+    }
+    
     
     
 }

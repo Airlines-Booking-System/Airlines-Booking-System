@@ -22,8 +22,8 @@ insert into flight_details (id, name, flight_class, destination, source, departu
 
 insert into user_details (id,cpass,email,name,role) values (default,'Prachi123','pg@gmail.com','Prachi','USER');
 
-insert into address_details(pincode, city, state) values (482001,'Jabalpur', 'MP'),
-(456006,'Ujjain', 'MP'), 
+insert into address_details(pincode, city, state) values (482001,'Jabalpur', 'Madhya Pradesh'),
+(456006,'Ujjain', 'Madhya Pradesh'), 
 (411057,'Pune', 'Maharastra'), 
 (400099, 'Mumbai', 'Maharashtra'),
 (440001, 'Nagpur', 'Maharashtra'),
