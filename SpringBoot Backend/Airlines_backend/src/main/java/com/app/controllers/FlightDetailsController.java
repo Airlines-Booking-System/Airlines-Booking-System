@@ -17,6 +17,8 @@ import com.app.entities.FlightDetails;
 import com.app.services.FlightDtlsService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @RestController
@@ -42,6 +44,12 @@ public class FlightDetailsController{
 	public ResponseEntity<?> addUser(@RequestBody AddUserDTO user) {
 		return service.addUser(user);
 	}
+
+	@GetMapping("/getPincodes")
+	public ResponseEntity<?> getPincodes() {
+		return service.getPincodes();
+	}
+	
 	
 	
 }

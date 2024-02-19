@@ -30,4 +30,5 @@ public class AddUserDTO {
     private String mobileNumber;
     private AddressDetails pincode;
     private UserDetails customer;
+    private String address;
 }

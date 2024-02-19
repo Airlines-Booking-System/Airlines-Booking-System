@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.app.daos.AddressDtlsDao;
 import com.app.daos.FlightDtlsDao;
 import com.app.daos.GeneralDtlsDao;
 import com.app.daos.UserDao;
@@ -23,6 +24,9 @@ import com.app.entities.UserDetails;
 @Service
 @Transactional
 public class FlightDtlsServiceImpl implements FlightDtlsService {
+
+	@Autowired
+	AddressDtlsDao addressDtlsDao;
 
 	@Autowired
 	ModelMapper modelMapper;
@@ -61,6 +65,7 @@ public class FlightDtlsServiceImpl implements FlightDtlsService {
 		UserDetails userDetails = modelMapper.map(user, UserDetails.class);
 		GeneralDetails generalDetails = modelMapper.map(user, GeneralDetails.class);
 		userDao.save(userDetails);
+		generalDetails.setCustomer(userDetails);
 		System.out.println("\n\n USER ADDED \n\n");
 		System.out.println("\n\n" + userDetails + "\n\n");
 		System.out.println("\n\n ADDING General DETAILS \n\n");
@@ -68,6 +73,13 @@ public class FlightDtlsServiceImpl implements FlightDtlsService {
 		
 		System.out.println("\n\n" + generalDetails + "\n\n");
 		return ResponseEntity.status(HttpStatus.CREATED).build();
+	}
+
+
+
+	@Override
+	public ResponseEntity<?> getPincodes() {
+		return ResponseEntity.ok().body(addressDtlsDao.findAll());
 	}
 
 

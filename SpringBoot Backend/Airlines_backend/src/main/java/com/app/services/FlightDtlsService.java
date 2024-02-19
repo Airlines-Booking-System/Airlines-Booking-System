@@ -14,4 +14,6 @@ public interface FlightDtlsService {
     public ResponseEntity< List<FlightDetails>> getCustomeFlightDetails(String toCity, String fromCity, LocalDateTime departure);
 
     public ResponseEntity<?> addUser(AddUserDTO user);
+
+    public ResponseEntity<?> getPincodes();
 }

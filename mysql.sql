@@ -22,8 +22,13 @@ insert into flight_details (id, name, flight_class, destination, source, departu
 
 insert into user_details (id,cpass,email,name,role) values (default,'Prachi123','pg@gmail.com','Prachi','USER');
 
-insert into address_details(pincode, city, state) values (482001,'Jabalpur', 'MP'),(483001,'Ujjain', 'MP'), (484001,'Pune', 'Maharastra');
-
+insert into address_details(pincode, city, state) values (482001,'Jabalpur', 'MP'),
+(456006,'Ujjain', 'MP'), 
+(411057,'Pune', 'Maharastra'), 
+(400099, 'Mumbai', 'Maharashtra'),
+(440001, 'Nagpur', 'Maharashtra'),
+(400601, 'Thane', 'Maharashtra'),
+(422001, 'Nashik', 'Maharashtra');
 insert into  general_details (customer_id,aadhar, address,dob,gender,mobile_number,pincode_pincode) values(1,'AA1','MP','2000-02-26','MALE','9999955555', 482001);
 
 insert into payment_details(status, total_amount, customer_id) values('Successful', 5000.5, 1);
