@@ -11,7 +11,7 @@ import com.app.entities.BookingDetails;
 
 public interface BookFlightService {
 
-    ResponseEntity<BookingDetails> bookFlight(BookFlightDTO bookFlightDto);
+    ResponseEntity<BookFlightDTO> bookFlight(BookFlightDTO bookFlightDto);
 
     ResponseEntity<List<BookFlightDTO>> viewMyBookedFlights(Integer id);
 
@@ -19,8 +19,14 @@ public interface BookFlightService {
 
     ResponseEntity<ViewProfileDTO> viewProfile(Integer id);
 
-    ResponseEntity<AddPassengerDTO> addPassenger(AddPassengerDTO dto);
+    ResponseEntity<AddPassengerDTO> addPassenger(AddPassengerDTO dto, Integer cid);
 
-    ResponseEntity<ViewProfileDTO> editProfile(ViewProfileDTO dto);
+    ResponseEntity<ViewProfileDTO> editProfile(ViewProfileDTO dto, Integer id);
+
+    ResponseEntity<?> viewPassengers(Integer cid);
+
+    ResponseEntity<?> getAvailableSeats(Integer flightId);
+
+    
     
 }

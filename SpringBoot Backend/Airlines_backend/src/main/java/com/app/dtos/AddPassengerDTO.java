@@ -28,8 +28,6 @@ public class AddPassengerDTO {
     @JsonProperty("customerId")
     @NonNull
     private Integer customerId;
-    @JsonProperty("customer")
-    private UserDetails customer;
     @JsonProperty("dob")
     private LocalDate dob;
     @JsonProperty("address")
@@ -44,9 +42,9 @@ public class AddPassengerDTO {
     @JsonProperty("gender")
 	private GenderEnum gender;
 	@JsonProperty("pincode")
-	private AddressDetails pincode;
+	private int pincode;
     @JsonProperty("bookingId")
-    private BookingDetails bookingid;
+    private Integer bookingid;
     @JsonProperty("name")
     @NotBlank
     private String name;

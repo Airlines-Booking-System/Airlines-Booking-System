@@ -37,8 +37,6 @@ public class ViewProfileDTO {
 	private GenderEnum gender;
 	@JsonProperty("pincode")
 	private AddressDetails pincode;
-    @JsonProperty("bookingId")
-    private BookingDetails bookingid;
     @JsonProperty("name")
     private String name;
     @JsonProperty("email")
