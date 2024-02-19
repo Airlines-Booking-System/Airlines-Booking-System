@@ -4,24 +4,40 @@ import "../src/Home.css"
 import axios from "axios";
 // import DatePicker from "react-datepicker";
 import "../node_modules/react-datepicker/dist/react-datepicker.css"
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 // import {Link, Switch, Route} from 'react-router-dom';
-
+import { Navigate, useNavigate } from "react-router-dom";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function Home() {
+
+    const navigate = useNavigate();
+
+    const viewFlightDetails = ()=>{
+        
+    }
     const [fromCity, setFromCity] = useState("");
     const [toCity, setToCity] = useState("");
     const [selectedDate, setSelectedDate] = useState("");
     const [searchResult, setSearchResult] = useState(false);
     const serverUrl = `http://${serverIp}:${port}`;
     const [flights, setFilghts] = useState([]);
+    const resultNotFoundToast = ()=>{
+        toast.error("No results found :(");
+    }
     const getFlights = ()=>{
         setSearchResult(true);
         const requestData = {toCity:toCity, fromCity: fromCity, departure:selectedDate+"T00:00:00.00Z"}
         console.log(requestData);
         axios.post(serverUrl + "/flights/all", requestData).then((response)=>{
+            if(response.status == 404){resultNotFoundToast()}
             setFilghts(response.data);
+        }).catch((error)=>{
+            console.log("executing toast!");
+            resultNotFoundToast();
         })
+        console.log(flights);
     }
 
     const handleDateChange = (e)=>{
@@ -73,23 +89,36 @@ function Home() {
             {
                 searchResult &&
                 <>
+                    <div className="container">
+                        <div className="row restDiv growDiv">
+                        <div className="col"> <p className="myfont textVertical">Flight Name</p></div> {" "}
+                            <div className="col"> <p className="myfont textVertical">Flight Class</p></div> {" "}
+                            <div className="col"> <p className="myfont textVertical">Destination</p></div> {" "}
+                            <div className="col"> <p className="myfont textVertical">Source</p></div> {" "}
+                            <div className="col"> <p className="myfont textVertical">Departure</p></div> {" "}
+                            <div className="col"> <p className="myfont textVertical">Arrival</p></div> {" "}
+                            <div className="col"> <p className="myfont textVertical">Price</p></div> {" "}
+                            <div className="col"></div>
+                        </div>
                     {flights.map((flight)=>{
                         return (
-                            <>
-                                <div className="container">
-                                    <div className="row restDiv growDiv" key={flight}>
-                                        <div className="col"> <p className="myfont textVertical">{flight.name}</p></div> {" "}
-                                        <div className="col"> <p className="myfont textVertical">{flight.class}</p></div> {" "}
-                                        <div className="col"> <p className="myfont textVertical">{flight.destination}</p></div> {" "}
-                                        <div className="col"> <p className="myfont textVertical">{flight.source}</p></div> {" "}
-                                        <div className="col"> <p className="myfont textVertical">{flight.departure}</p></div> {" "}
-                                        <div className="col"> <p className="myfont textVertical">{flight.arrival}</p></div> {" "}
-                                        <div className="col"><button className="tweet">View</button></div>
-                                    </div> 
+                            <>      
+                                <div className="row restDiv growDiv">
+                                    <div className="col"> <p className="myfont textVertical">{flight.name}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.flightClass}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.destination}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.source}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.departure}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight.arrival}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">{flight["farePrice"]}</p></div> {" "}
+                                    <div className="col"><button className="tweet" onClick={()=>{
+                                        navigate(`/bookFlight/${flight.id}`)
+                                    }}>Book</button></div>
                                 </div>
                             </>
                         );
                     })}
+                    </div>
                 </>
             }
             {
@@ -107,6 +136,7 @@ function Home() {
                     </div>
                 </>
             }
+            <ToastContainer></ToastContainer>
         </>
      );
 }

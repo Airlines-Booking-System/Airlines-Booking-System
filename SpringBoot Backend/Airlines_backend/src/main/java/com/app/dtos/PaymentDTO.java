@@ -16,11 +16,20 @@ import lombok.ToString;
 @NoArgsConstructor
 public class PaymentDTO {
     @JsonProperty("flightName")
-    private String flightName;
+    private String flightName; // not needed to make payment
+
+    @JsonProperty("flightId")
+    private Integer flightid;
+
     @JsonProperty("userName")
-    private String userName;
+    private String userName; // not needed to make payment
+
     @JsonProperty("status")
     private StatusEnum status;
+
+    @JsonProperty("customerId")
+    private Integer customerId;
+
     @JsonProperty("totalAmount")
     private double totalAmount;
 }

@@ -22,6 +22,7 @@ import com.app.daos.SeatDetailsDao;
 import com.app.daos.UserDao;
 import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFlightDTO;
+import com.app.dtos.PaymentDTO;
 import com.app.dtos.SeatDTO;
 import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
@@ -30,6 +31,7 @@ import com.app.entities.GeneralDetails;
 import com.app.entities.PassengerDetails;
 import com.app.entities.PaymentDetails;
 import com.app.entities.SeatDetails;
+import com.app.entities.StatusEnum;
 import com.app.entities.UserDetails;
 
 @Service
@@ -222,6 +224,17 @@ public class BookFlightServiceImpl implements BookFlightService {
         }
         System.out.println("\n\n\n LIST: " + seatList + "\n\n\n");
         return ResponseEntity.ok().body(seatList);
+    }
+
+    @Override
+    public ResponseEntity<?> makePayment(PaymentDTO paymentDTO) {
+        PaymentDetails payment = new PaymentDetails();
+        UserDetails user = udao.findById(paymentDTO.getCustomerId()).orElseThrow();
+        System.out.println("\n\n" + user.getPaymentID().size() + "\n\n");
+        payment.setCustomerId(user);
+        payment.setStatus(StatusEnum.Successful);
+        payment.setTotalAmount(paymentDTO.getTotalAmount());
+        return ResponseEntity.ok().body(paydao.save(payment));
     }
 
 }

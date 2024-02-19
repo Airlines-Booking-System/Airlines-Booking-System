@@ -7,6 +7,8 @@ import Login from "./Login"
 import Register from "./Register"
 import About from "./About"
 import {Link, Routes, Route} from 'react-router-dom'
+import BookFlight from "./BookFlight";
+import Error from "./Error";
 
 
 function Forwarding(){
@@ -48,7 +50,8 @@ function Forwarding(){
                 <Route path="/register" element={<Register/>}/> 
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/about" element={<About/>}/>
-
+                <Route path="/bookFlight/:flightId"  element={<BookFlight/>}></Route>
+                <Route path="/Error" element={<Error/>}></Route>
             </Routes>
         </>
     );

@@ -16,4 +16,6 @@ public interface FlightDtlsService {
     public ResponseEntity<?> addUser(AddUserDTO user);
 
     public ResponseEntity<?> getPincodes();
+
+    public ResponseEntity<?> getFlightById(Integer id);
 }
