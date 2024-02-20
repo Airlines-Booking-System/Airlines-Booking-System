@@ -110,7 +110,7 @@ function Home() {
                                     <div className="col"> <p className="myfont textVertical">{flight.source}</p></div> {" "}
                                     <div className="col"> <p className="myfont textVertical">{flight.departure}</p></div> {" "}
                                     <div className="col"> <p className="myfont textVertical">{flight.arrival}</p></div> {" "}
-                                    <div className="col"> <p className="myfont textVertical">{flight["farePrice"]}</p></div> {" "}
+                                    <div className="col"> <p className="myfont textVertical">Rs.{" "} {flight["farePrice"]}</p></div> {" "}
                                     <div className="col"><button className="tweet" onClick={()=>{
                                         navigate(`/bookFlight/${flight.id}`)
                                     }}>Book</button></div>

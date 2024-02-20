@@ -27,8 +27,8 @@ const serverIp = "http://" + process.env.REACT_APP_SERVER_IP +":"+ process.env.R
 
 function UserProfile(props) {
     
-    const getPincodes = ()=>{
-        axios.get(`${serverIp}/flights/getPincodes`).then((resp)=>{
+    const getPincodes = async ()=>{
+        await axios.get(`${serverIp}/flights/getPincodes`).then((resp)=>{
             setPincodeSelector(resp.data);
         });
     }
@@ -120,6 +120,7 @@ function UserProfile(props) {
             
           {/* <div className="restDiv" style={{"textAlign":"left", "backgroundRepeat":"no-repeat","backgroundSize":"fill","backgroundImage":"url(planepic.jpeg)"}} > */}
           <div className="restDiv" style={{"textAlign":"left"}}>
+            <h1 className="logoFont centerText">Register Now</h1>
                 <div>
                     <p  className="myfont"> Full Name : </p>
                     <input type="text" value={fullName} onChange={onFullNameChange} className="searchBox myfont greyText" />

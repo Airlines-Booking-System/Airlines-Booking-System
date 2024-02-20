@@ -224,3 +224,7 @@ button{
     font-weight: normal;
     font-size: x-large;
 }
+
+.centerText{
+    text-align: center;
+}
