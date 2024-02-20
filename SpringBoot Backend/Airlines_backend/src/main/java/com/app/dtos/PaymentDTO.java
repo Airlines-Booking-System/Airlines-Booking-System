@@ -19,7 +19,7 @@ public class PaymentDTO {
     private String flightName; // not needed to make payment
 
     @JsonProperty("flightId")
-    private Integer flightid;
+    private Integer flightId;
 
     @JsonProperty("userName")
     private String userName; // not needed to make payment

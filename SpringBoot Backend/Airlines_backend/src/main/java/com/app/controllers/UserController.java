@@ -1,6 +1,7 @@
 package com.app.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.AddPassengerDTO;
@@ -12,6 +13,7 @@ import com.app.services.BookFlightService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class UserController {
     @Autowired
     private BookFlightService service;
@@ -76,6 +79,7 @@ public class UserController {
 
     @PostMapping("/makePayment")
     public ResponseEntity<?> makePayment(@RequestBody PaymentDTO paymentDTO) {
+        System.out.println("\n\n" + "inside user Controller!" + "\n\n");
         return service.makePayment(paymentDTO);
     }
     
