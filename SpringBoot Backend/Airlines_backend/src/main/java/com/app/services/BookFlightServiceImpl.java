@@ -68,23 +68,32 @@ public class BookFlightServiceImpl implements BookFlightService {
     @Override
     public ResponseEntity<BookFlightDTO> bookFlight(BookFlightDTO bookFlightDto) { 
         System.out.println("\n\n----------------\n" + bookFlightDto);
+        System.out.println("1");
         BookingDetails bookingDetails = new BookingDetails();
         FlightDetails currentFlight = fDao.findById(bookFlightDto.getFlightID()).orElseThrow();
+        System.out.println("2");
         bookingDetails.setFarePrice(currentFlight.getFarePrice());
+        System.out.println("3");
         bookingDetails.setDuration(LocalTime.ofSecondOfDay(currentFlight.getArrival().toLocalTime().toSecondOfDay()-currentFlight.getDeparture().toLocalTime().toSecondOfDay()));
-        if (!bookFlightDto.getPassengerid().isEmpty()){
-            bookingDetails.setPassengerId(pdao.findAllById(bookFlightDto.getPassengerid()));
-        }
+        System.out.println("4");
+        // if (!bookFlightDto.getPassengerid().isEmpty()){
+        //     System.out.println("5");
+        //     bookingDetails.setPassengerId(pdao.findAllById(bookFlightDto.getPassengerid()));
+        // }
+        System.out.println("6");
         UserDetails customer=udao.findCustomerById(bookFlightDto.getCid());
+        System.out.println("7");
         bookingDetails.setCustomerId(customer);
         // System.out.println(customer.getName());
-
+        System.out.println("8");
         PaymentDetails payment=paydao.findPaymentById(bookFlightDto.getPaymentId());
+        System.out.println("9");
         bookingDetails.setPaymentID(payment);
         // System.out.println(payment.getStatus());
-
+        System.out.println("10");
 
         FlightDetails flight=fDao.findFlightById(bookFlightDto.getFlightID());
+        System.out.println("11");
         System.out.println("\n\n DTO: " + bookFlightDto +"\n\n");
         bookingDetails.setFlightId(flight);
         //  System.out.println(flight.getName());
@@ -227,13 +236,15 @@ public class BookFlightServiceImpl implements BookFlightService {
 
     @Override
     public ResponseEntity<?> makePayment(PaymentDTO paymentDTO) {
+        System.out.println("\n\n" + paymentDTO + "\n\n");
         PaymentDetails payment = new PaymentDetails();
         UserDetails user = udao.findById(paymentDTO.getCustomerId()).orElseThrow();
         System.out.println("\n\n" + user.getPaymentID().size() + "\n\n");
         payment.setCustomerId(user);
         payment.setStatus(StatusEnum.Successful);
         payment.setTotalAmount(paymentDTO.getTotalAmount());
-        return ResponseEntity.ok().body(paydao.save(payment));
+        paydao.save(payment);
+        return ResponseEntity.ok().body(payment.getId());
     }
 
 }

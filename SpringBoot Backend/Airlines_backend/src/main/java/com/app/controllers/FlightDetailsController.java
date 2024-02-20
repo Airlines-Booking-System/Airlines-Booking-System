@@ -54,9 +54,9 @@ public class FlightDetailsController{
 	
 	@GetMapping("/findFlightById/{id}")
 	public ResponseEntity<?> findFlightById(@PathVariable Integer id) {
+		System.out.println("\n\n" + "RECIEVED" + "\n\n");
 		return service.getFlightById(id);
 		
 	}
-	
-	
+
 }
