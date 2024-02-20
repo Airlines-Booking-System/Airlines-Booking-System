@@ -243,6 +243,7 @@ public class BookFlightServiceImpl implements BookFlightService {
         System.out.println("\n\n" + user.getPaymentID().size() + "\n\n");
         payment.setCustomerId(user);
         payment.setStatus(StatusEnum.Successful);
+        System.out.println("\n\n" + "total amt: " + paymentDTO.getTotalAmount() + "\n\n");
         payment.setTotalAmount(paymentDTO.getTotalAmount());
         paydao.save(payment);
         return ResponseEntity.ok().body(payment.getId());
