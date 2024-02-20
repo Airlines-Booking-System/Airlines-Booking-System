@@ -17,11 +17,53 @@ function EditProfile(props) {
             })
         }
 
-        useEffect(()=>{
-            const temp={"no":123,"name":"sneha","email":"sneha@123","mobile":"1234567890","password":"123","birth":"31-01-2001","gender":"f","address":"pune","aadhar":"1234"}
-            setpassenger(temp);
-            //getDetails();
-        },[]);
+        // useEffect(()=>{
+        //     const temp={"no":123,"name":"sneha","email":"sneha@123","mobile":"1234567890","password":"123","birth":"31-01-2001","gender":"f","address":"pune","aadhar":"1234"}
+        //     setpassenger(temp);
+        //     //getDetails();
+        // },[]);
+
+    const [name, setName] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");  
+    const [dob, setDob] = useState("");
+    const [gender, setGender] = useState("");   
+    const [address, setAddress] = useState("");
+    const [adhar, setAdhar] = useState("");   
+    
+    const onNameChange = (e)=>{
+        setName(e.target.value);
+    }
+
+    const onMobileChange = (e)=>{
+        setMobile(e.target.value);
+    }
+
+    const onEmailChange = (e)=>{
+        setEmail(e.target.value);
+    }
+
+    const onPasswordChange = (e)=>{
+        setPassword(e.target.value);
+    }
+
+    const onDobChange = (e)=>{
+        setDob(e.target.value);
+    }
+
+    const onGenderChange = (e)=>{
+        setGender(e.target.value);
+    }
+
+    const onAddressChange = (e)=>{
+        setAddress(e.target.value);
+    }
+
+    const onAdharChange = (e)=>{
+        setAdhar(e.target.value);
+    }
+
     return (  
         <>
         <div className="container" style={{"textAlign":"left","position":"relative"}}>
@@ -30,9 +72,9 @@ function EditProfile(props) {
                     <img className="profileImage " src="Delhi.jpg" alt="" />   
                 </div> 
                 <div  className="editDiv">
-                    <input type="text" value={passenger.name} className="profileBox myfont  greyText" />
-                    <input type="text" value={passenger.mobile} className="profileBox myfont greyText" />
-                    <input type="text" value={passenger.email} className="profileBox myfont greyText" />
+                    <input type="text" value={name} onChange={onNameChange} className="profileBox myfont  greyText" />
+                    <input type="text" value={mobile} onChange={onMobileChange} className="profileBox myfont greyText" />
+                    <input type="text" value={email} onChange={onEmailChange} className="profileBox myfont greyText" />
                 </div>
             </div> 
         </div>
@@ -42,24 +84,24 @@ function EditProfile(props) {
             <div className="restDiv" style={{"textAlign":"left"}}>
             <div style={{"marginBottom":"5px"}} >
                 <p  className="myfont">  Password : </p>
-                <input type="password" value={passenger.password} className="profileBox myfont greyText" />
+                <input type="password" value={password} onChange={onPasswordChange}  className="profileBox myfont greyText" />
             </div>
             <div style={{"marginBottom":"5px"}}>
                 <p className="myfont"> DateOfBirth : </p>
-                <input type="text" value={passenger.birth} className="profileBox myfont  greyText" />
+                <input type="text" value={dob} onChange={onDobChange}  className="profileBox myfont  greyText" />
               
             </div>
             <div style={{"marginBottom":"5px"}}>
                 <p className="myfont">Gender :</p>
-                <input type="text" value={passenger.gender} className="profileBox myfont greyText" />
+                <input type="text" value={gender} onChange={onGenderChange}  className="profileBox myfont greyText" />
             </div>
             <div style={{"marginBottom":"5px"}}>
                 <p className="myfont">Address :</p>
-                <input type="text" value={passenger.address} className="profileBox myfont greyText" />
+                <input type="text" value={address} onChange={onAddressChange}  className="profileBox myfont greyText" />
             </div>
             <div style={{"marginBottom":"5px"}}>
                 <p className="myfont">AadharNo :</p>
-                <input type="number" value={passenger.aadhar} className="profileBox myfont greyText" />
+                <input type="number" value={adhar} onChange={onAdharChange}  className="profileBox myfont greyText" />
             </div>
 
             <div style={{"marginBottom":"5px"}}>
