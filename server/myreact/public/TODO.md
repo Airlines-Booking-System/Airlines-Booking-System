@@ -1,9 +1,9 @@
 # USER:
-## view booked flights
+## view booked flights ### COMPLETED
 
 # ADMIN
-## view all users and delete
-## create flight
-## view/delete flight
-## edit flight
-## all payments
+## view all users ### COMPLETE
+## create flight ### COMPLETE
+## view flight ### COMPLETE
+## edit flight ### COMPLETE
+## all payments ### COMPLETE

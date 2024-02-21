@@ -63,18 +63,25 @@ public class AdminServiceImpl implements AdminService{
         details.setName(flightToAdd.getName());
         details.setSource(flightToAdd.getSource());
         details.setFarePrice(flightToAdd.getFarePrice());
-        fDao.save(details);
+        System.out.println("\n\n" + details + "\n\n");
+        FlightDetails temp = fDao.save(details);
         List<SeatDetails> seatList = new ArrayList<>();
         for(int i = 1; i <= 50; i++){
             SeatDetails seat = new SeatDetails();
             seat.setAvailable(true);
-            seat.setFlightId(details);
+            // System.out.println("\n\n" + "TRY" + "\n\n");
+            seat.setFlightId(temp);
+            // System.out.println("\n\n" + "SUCCESS" + "\n\n");
             seat.setSeatNo("AB" + i);
             seatList.add(seat);
         }
+        System.out.println("\n\n" + "Saving seat dtls" + "\n\n");
         seatDao.saveAll(seatList);
+        System.out.println("\n\n" + "saved seat dtls" + "\n\n");
         return "added successfully";
     }
+
+
     @Override
     public String deleteFlight(Integer id) {
         fDao.deleteById(id);
@@ -105,7 +112,7 @@ public class AdminServiceImpl implements AdminService{
         details.setFlightClass(flight.getFlightClass());
         details.setName(flight.getName());
         details.setSource(flight.getSource());
-        fDao.editFlight(flight.getArrival(),flight.getDeparture(),flight.getDestination(),flight.getFlightClass(),flight.getName(),flight.getSource(),id);
+        fDao.editFlight(flight.getArrival(),flight.getDeparture(),flight.getDestination(),flight.getFlightClass(),flight.getName(),flight.getSource(),id, flight.getFarePrice());
         return "edited successfully";
     }
 

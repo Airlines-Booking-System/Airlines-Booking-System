@@ -1,6 +1,7 @@
 package com.app.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.FlightDTO;
@@ -13,6 +14,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/admin")
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class AdminController {
 
     @Autowired
@@ -44,7 +48,7 @@ public class AdminController {
         return ResponseEntity.status(HttpStatus.OK).build();
     }
     
-    @GetMapping("/deleteflight/{id}")//done
+    @DeleteMapping("/deleteflight/{id}")//done
     public ResponseEntity<?> deleteFlight(@PathVariable Integer id){
         System.out.println(id);
         System.out.println("\n\n" + service.deleteFlight(id));

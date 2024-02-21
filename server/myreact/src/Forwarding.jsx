@@ -10,9 +10,16 @@ import {Link, Routes, Route} from 'react-router-dom'
 import BookFlight from "./BookFlight";
 import Error from "./Error";
 import ViewBookedFlights from "./ViewBookedFlights";
+import CreateFlight from "./CreateFlight";
+import AdminDashboard from "./AdminDashboard";
+import ViewFlights from "./ViewFlights";
+import EditFLight from "./EditFlight";
+import ViewUsers from "./ViewUsers";
+import ViewPaymetns from "./VIewPayments";
 
 
 function Forwarding(){
+    const currentCustomerId = 1;
 
     return(
         <>
@@ -37,7 +44,10 @@ function Forwarding(){
                         <Link to="/editprofile" className="nav-link myfont" style={{"color":"black"}}>Edit Profile</Link>  
                         </li>
                         <li className="nav-item">
-                        <Link to="/ViewBookedFlights" className="nav-link myfont" style={{"color":"black"}}>View Booked Flights</Link>  
+                        <Link to={`/ViewBookedFlights/${currentCustomerId}`} className="nav-link myfont" style={{"color":"black"}}>View Booked Flights</Link>  
+                        </li>
+                        <li className="nav-item">
+                        <Link to={`/AdminDashboard`} className="nav-link myfont" style={{"color":"black"}}>Admin</Link>  
                         </li>
                     </ul>
                     </div>
@@ -53,7 +63,13 @@ function Forwarding(){
                 <Route path="/about" element={<About/>}/>
                 <Route path="/bookFlight/:flightId"  element={<BookFlight/>}></Route>
                 <Route path="/Error" element={<Error/>}></Route>
-                <Route path="/ViewBookedFlights" element={<ViewBookedFlights/>}></Route>
+                <Route path="/ViewBookedFlights/:customerId" element={<ViewBookedFlights/>}></Route>
+                <Route path="/CreateFlight" element={<CreateFlight></CreateFlight>}></Route>
+                <Route path="/AdminDashboard" element={<AdminDashboard></AdminDashboard>}></Route>
+                <Route path="/ViewFlights" element={<ViewFlights></ViewFlights>}></Route>
+                <Route path="/EditFLight/:flightId" element={<EditFLight></EditFLight>}></Route>
+                <Route path="/ViewUsers" element={<ViewUsers></ViewUsers>}></Route>
+                <Route path="ViewPayments" element={<ViewPaymetns></ViewPaymetns>}></Route>
             </Routes>
         </>
     );

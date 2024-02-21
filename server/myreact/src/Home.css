@@ -228,3 +228,7 @@ button{
 .centerText{
     text-align: center;
 }
+
+.inlineFlex{
+    display: inline-flex;
+}

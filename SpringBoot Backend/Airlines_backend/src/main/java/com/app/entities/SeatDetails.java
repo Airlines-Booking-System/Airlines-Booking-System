@@ -1,5 +1,6 @@
 package com.app.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -18,11 +19,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class SeatDetails extends BaseEntity {
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "flight_id")
     private FlightDetails flightId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "booking_id")
     private BookingDetails bookingId;
 

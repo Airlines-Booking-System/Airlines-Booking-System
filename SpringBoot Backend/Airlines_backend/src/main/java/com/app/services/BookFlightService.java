@@ -14,7 +14,7 @@ public interface BookFlightService {
 
     ResponseEntity<BookFlightDTO> bookFlight(BookFlightDTO bookFlightDto);
 
-    ResponseEntity<List<BookFlightDTO>> viewMyBookedFlights(Integer id);
+    ResponseEntity<?> viewMyBookedFlights(Integer id);
 
     ResponseEntity<BookFlightDTO> cancelFlight(Integer id);
 

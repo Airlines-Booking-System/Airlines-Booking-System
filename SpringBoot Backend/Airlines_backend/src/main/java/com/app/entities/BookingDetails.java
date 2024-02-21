@@ -34,11 +34,11 @@ public class BookingDetails extends BaseEntity {
     @JoinColumn(name = "customerId")
     private UserDetails customerId;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "paymentId")
     private PaymentDetails paymentID;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "flightId")
     private FlightDetails flightId;
 

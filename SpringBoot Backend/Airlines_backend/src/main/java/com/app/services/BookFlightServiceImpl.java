@@ -24,6 +24,7 @@ import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFlightDTO;
 import com.app.dtos.PaymentDTO;
 import com.app.dtos.SeatDTO;
+import com.app.dtos.ViewBookedFlightDTO;
 import com.app.dtos.ViewProfileDTO;
 import com.app.entities.BookingDetails;
 import com.app.entities.FlightDetails;
@@ -111,38 +112,27 @@ public class BookFlightServiceImpl implements BookFlightService {
     }
 
     @Override
-    public ResponseEntity<List<BookFlightDTO>> viewMyBookedFlights(Integer id) {
+    public ResponseEntity<?> viewMyBookedFlights(Integer id) {
         List<BookingDetails> dtemp= dao.findByCustomerId(udao.findCustomerById(id));
 
-        List<BookFlightDTO> dtoList = new ArrayList<>();
+        List<ViewBookedFlightDTO> dtoList = new ArrayList<>();
         for(BookingDetails d : dtemp){
-            BookFlightDTO dto=new BookFlightDTO();
-            dto.setId(d.getId());
-            dto.setCid(d.getCustomerId().getId());
-            // dto.setDuration(LocalTime.ofSecondOfDay(d.getFlightId().getDeparture().toLocalTime().toSecondOfDay()-d.getFlightId().getArrival().toLocalTime().toSecondOfDay()));
-            dto.setFlightID(d.getFlightId().getId());
-            dto.setPaymentId(d.getPaymentID().getId());
+            List<SeatDetails> seat = seatDao.findByBookingId(d);
+            FlightDetails flight = d.getFlightId();
+            ViewBookedFlightDTO dto=new ViewBookedFlightDTO();
+            dto.setTotalAmount(d.getFarePrice());
+            dto.setSource(flight.getSource());
+            dto.setDestination(flight.getDestination());
+            dto.setFlightName(flight.getName());
+            dto.setCustomerName(d.getCustomerId().getName());
+            dto.setDuration(LocalTime.ofSecondOfDay((d.getFlightId().getArrival().toLocalTime().toSecondOfDay()-d.getFlightId().getDeparture().toLocalTime().toSecondOfDay())));
+            dto.setArrival(flight.getArrival());
+            dto.setDeparture(flight.getDeparture());
+            dto.setSeatNo(seat.get(0).getSeatNo());
             System.out.println("\n\n" + "1" + "\n\n");
-            List<PassengerDetails> plist = d.getPassengerId();
-            System.out.println("\n\n" + "2" + "\n\n");
-            List<String> names = new ArrayList<>();
-            for(PassengerDetails passenger:plist){
-                names.add(passenger.getName());
-            }
-            System.out.println("\n\n" + "3" + "\n\n");
-            dto.setPassangerNames(names);
-            System.out.println("\n\n" + "4" + "\n\n");
             dtoList.add(dto);
-            System.out.println("\n\n" + "5" + "\n\n");
-            List<SeatDetails> seats = seatDao.findByBookingId(d);
-            System.out.println("\n\n" + "6" + "\n\n");
-            List<String> seatStr = new ArrayList<>();
-            for(SeatDetails seat:seats){
-                seatStr.add(seat.getSeatNo());
-            }
-            System.out.println("\n\n" + "7" + "\n\n");
-            dto.setSeatNo(seatStr);
             System.out.println("\n\n" + "FINISH" + "\n\n");
+            System.out.println("\n\n" + dtoList + "\n\n");
         }
         return ResponseEntity.ok(dtoList);
     }
