@@ -42,6 +42,34 @@ return(
     
 
     <p style={{"textAlign":"center"}}   className="myfont titleStyle"> Welcome aboard, and happy travels!</p>
+   <hr></hr>
+    </div>
+
+    <div>
+        <div style={{"textAlign":"center"}}>
+                <div className="searchDiv restDivColor">
+                    <div style={{"textAlign":"center"}}>
+                        <div style={{"display":"inline-block"}}>
+                        <span className="myfont">
+                    <h1 className="orangeFont" >CONTACT US </h1>
+                     <br></br>
+                    (Monday to Friday , 9am to 7pm PST)
+                    <br></br>
+                    <br></br>
+                    India Toll-Free :
+                    <br></br>
+                     91+787383738
+                     <br></br>
+                     <br></br>
+                    International :
+                    <br></br>
+                    1-087363-373
+
+        </span>
+        </div>
+         </div>
+        </div>
+    </div>
     </div>
     
     

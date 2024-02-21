@@ -17,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function ViewUsers(){
+    const serverUrl = `http://${serverIp}:${port}`
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
     const getUsers = async ()=>{
@@ -33,7 +34,7 @@ function ViewUsers(){
         getUsers();
     },[])
 
-    const serverUrl = `http://${serverIp}:${port}`
+    
     return (
         <>
             <div className="container">

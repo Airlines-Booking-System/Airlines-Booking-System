@@ -38,10 +38,10 @@ function Forwarding(){
                         <Link to="/about" className="nav-link myfont" style={{"color":"black"}}>About</Link>
                         </li>
                         <li className="nav-item">
-                        <Link to="/profile" className="nav-link myfont" style={{"color":"black"}}>My Profile</Link>  
+                        <Link to={`/profile/${currentCustomerId}`} className="nav-link myfont" style={{"color":"black"}}>My Profile</Link>  
                         </li>
                         <li className="nav-item">
-                        <Link to="/editprofile" className="nav-link myfont" style={{"color":"black"}}>Edit Profile</Link>  
+                        <Link to={`/editprofile/${currentCustomerId}`} className="nav-link myfont" style={{"color":"black"}}>Edit Profile</Link>  
                         </li>
                         <li className="nav-item">
                         <Link to={`/ViewBookedFlights/${currentCustomerId}`} className="nav-link myfont" style={{"color":"black"}}>View Booked Flights</Link>  
@@ -56,8 +56,8 @@ function Forwarding(){
             <Routes>
                 <Route path="/"  element={<Home/>}/>
                 <Route path="/home" element={<Home/>}/>
-                <Route path="/profile" element={<Profile/>}/>
-                <Route path="/editprofile" element={<EditProfile/>}/>
+                <Route path="/profile/:customerId" element={<Profile/>}/>
+                <Route path="/editprofile/:customerId" element={<EditProfile/>}/>
                 <Route path="/register" element={<Register/>}/> 
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/about" element={<About/>}/>
