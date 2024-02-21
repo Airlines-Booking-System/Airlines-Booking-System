@@ -9,6 +9,7 @@ import About from "./About"
 import {Link, Routes, Route} from 'react-router-dom'
 import BookFlight from "./BookFlight";
 import Error from "./Error";
+import ViewBookedFlights from "./ViewBookedFlights";
 
 
 function Forwarding(){
@@ -30,13 +31,13 @@ function Forwarding(){
                         <Link to="/about" className="nav-link myfont" style={{"color":"black"}}>About</Link>
                         </li>
                         <li className="nav-item">
-                        <Link to="/contact" className="nav-link myfont" style={{"color":"black"}}>Contact</Link>  
-                        </li>
-                        <li className="nav-item">
                         <Link to="/profile" className="nav-link myfont" style={{"color":"black"}}>My Profile</Link>  
                         </li>
                         <li className="nav-item">
                         <Link to="/editprofile" className="nav-link myfont" style={{"color":"black"}}>Edit Profile</Link>  
+                        </li>
+                        <li className="nav-item">
+                        <Link to="/ViewBookedFlights" className="nav-link myfont" style={{"color":"black"}}>View Booked Flights</Link>  
                         </li>
                     </ul>
                     </div>
@@ -52,6 +53,7 @@ function Forwarding(){
                 <Route path="/about" element={<About/>}/>
                 <Route path="/bookFlight/:flightId"  element={<BookFlight/>}></Route>
                 <Route path="/Error" element={<Error/>}></Route>
+                <Route path="/ViewBookedFlights" element={<ViewBookedFlights/>}></Route>
             </Routes>
         </>
     );

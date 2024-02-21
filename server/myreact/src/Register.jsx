@@ -5,6 +5,7 @@ import axios from "axios";
 import "../node_modules/react-datepicker/dist/react-datepicker.css"
 import { Dropdown, DropdownButton } from "react-bootstrap";
 import { Navigate, useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 // Register user JSON:
 
 // {
@@ -109,6 +110,7 @@ function UserProfile(props) {
             }
 
         axios.post(`${serverIp}/flights/addCustomer`, payload).then((resp)=>{
+            if(resp.status == 200) toast.success("Successfully registered, now you can login")
             navigate("/login");
         })
     }
@@ -194,6 +196,7 @@ function UserProfile(props) {
                 </div>
             </div>
         </div>
+        <ToastContainer></ToastContainer>
         </>
     );
 }
