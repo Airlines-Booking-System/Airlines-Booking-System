@@ -7,20 +7,22 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.app.entities.PassengerDetails;
-import com.app.entities.UserDetails;
+import com.app.entities.UserDetailsEntity;
 
-public interface UserDao extends JpaRepository<UserDetails,Integer> {
+public interface UserDao extends JpaRepository<UserDetailsEntity,Integer> {
 
-    @Query(value = "select * from user_details",nativeQuery = true)
-    List<UserDetails> findAllUsers();
+    @Query(value="select * from user_details_entity where email=:e",nativeQuery = true)
+    UserDetailsEntity findByEmail(@Param("e")String e);
+
+    @Query(value = "select * from user_details_entity",nativeQuery = true)
+    List<UserDetailsEntity> findAllUsers();
 
     @Modifying
     @Query(value = "update user_details set cpass=:cpass, email=:email, name=:name",nativeQuery = true)
     void editProfile(@Param("cpass") String cpass,@Param("email")String email,@Param("name")String name);
 
     @Query(value="select * from user_details where id=:cid",nativeQuery = true)
-    UserDetails findCustomerById(@Param("cid")Integer cid);
+    UserDetailsEntity findCustomerById(@Param("cid")Integer cid);
 
 
     @Query(value = "select passenger_id_id from user_details_passenger_id where user_details_id = :cid", nativeQuery = true)

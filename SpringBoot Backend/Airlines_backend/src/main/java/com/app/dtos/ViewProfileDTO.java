@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 
 import com.app.entities.AddressDetails;
-import com.app.entities.BookingDetails;
 import com.app.entities.GenderEnum;
 import com.fasterxml.jackson.annotation.JsonProperty;
 

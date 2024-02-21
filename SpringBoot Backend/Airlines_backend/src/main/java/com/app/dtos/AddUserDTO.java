@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import com.app.entities.AddressDetails;
 import com.app.entities.GenderEnum;
 import com.app.entities.RoleEnum;
-import com.app.entities.UserDetails;
+import com.app.entities.UserDetailsEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +29,6 @@ public class AddUserDTO {
     private GenderEnum gender;
     private String mobileNumber;
     private AddressDetails pincode;
-    private UserDetails customer;
+    private UserDetailsEntity customer;
     private String address;
 }

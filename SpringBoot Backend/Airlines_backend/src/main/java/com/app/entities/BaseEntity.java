@@ -29,4 +29,8 @@ public class BaseEntity implements Serializable {
 	@JsonProperty
 	
 	private Integer id;
+	
+	public Integer getId() {
+		return id;
+	}
 }

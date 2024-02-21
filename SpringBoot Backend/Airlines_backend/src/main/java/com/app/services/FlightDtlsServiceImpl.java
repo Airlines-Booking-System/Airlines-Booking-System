@@ -18,7 +18,7 @@ import com.app.daos.UserDao;
 import com.app.dtos.AddUserDTO;
 import com.app.entities.FlightDetails;
 import com.app.entities.GeneralDetails;
-import com.app.entities.UserDetails;
+import com.app.entities.UserDetailsEntity;
 
 
 @Service
@@ -62,7 +62,7 @@ public class FlightDtlsServiceImpl implements FlightDtlsService {
 
 	@Override
 	public ResponseEntity<?> addUser(AddUserDTO user) {
-		UserDetails userDetails = modelMapper.map(user, UserDetails.class);
+		UserDetailsEntity userDetails = modelMapper.map(user, UserDetailsEntity.class);
 		GeneralDetails generalDetails = modelMapper.map(user, GeneralDetails.class);
 		userDao.save(userDetails);
 		generalDetails.setCustomer(userDetails);
