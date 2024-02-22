@@ -8,8 +8,9 @@ import com.app.dtos.AddPassengerDTO;
 import com.app.dtos.BookFlightDTO;
 import com.app.dtos.PaymentDTO;
 import com.app.dtos.ViewProfileDTO;
-import com.app.entities.BookingDetails;
 import com.app.services.BookFlightService;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -31,9 +31,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
     @Autowired
     private BookFlightService service;
+    
+    @Autowired
+    private HttpSession session;
 
+    @GetMapping("/see")
+    public void testing() {
+		System.out.println("email mila  "+ (Integer)session.getAttribute("userid"));
+
+    }
     @GetMapping("/getAvailabeSeats/{flightId}")
-    public ResponseEntity<?> getAvailableSeats(@PathVariable Integer flightId) {
+    public ResponseEntity<?> getAvailableSeats(@PathVariable  Integer flightId) {
+    	System.out.println("hieee im hereeee in getavailable seats wale api mai "+flightId);
+
         return service.getAvailableSeats(flightId);
     }
     

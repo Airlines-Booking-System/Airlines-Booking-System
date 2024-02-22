@@ -18,7 +18,7 @@ import com.app.dtos.UserDTO;
 import com.app.entities.FlightDetails;
 import com.app.entities.PaymentDetails;
 import com.app.entities.SeatDetails;
-import com.app.entities.UserDetails;
+import com.app.entities.UserDetailsEntity;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -42,8 +42,8 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public List<UserDTO> viewAllUsers() {
         List<UserDTO> dtoList=new ArrayList<>();
-        List<UserDetails> list=uDao.findAllUsers();
-        for (UserDetails userDetails : list) {
+        List<UserDetailsEntity> list=uDao.findAllUsers();
+        for (UserDetailsEntity userDetails : list) {
             UserDTO dto=new UserDTO();
             dto.setCpass(userDetails.getCpass());
             dto.setName(userDetails.getName());

@@ -27,7 +27,7 @@ public class GeneralDetails extends BaseEntity{
 	@OneToOne
 	@MapsId
 	@JoinColumn(name = "customerId")
-	private UserDetails customer;
+	private UserDetailsEntity customer;
 	
 	@Column(nullable = false)
 	private LocalDate dob;
@@ -46,4 +46,9 @@ public class GeneralDetails extends BaseEntity{
 	
 	@OneToOne
 	private AddressDetails pincode;
+
+	public void setCustomer(UserDetailsEntity userDetails) {
+			customer=userDetails;
+		
+	}
 }

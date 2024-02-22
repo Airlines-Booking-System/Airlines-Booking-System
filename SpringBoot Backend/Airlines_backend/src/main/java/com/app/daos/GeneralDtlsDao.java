@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.app.entities.GenderEnum;
 import com.app.entities.GeneralDetails;
 
 public interface GeneralDtlsDao extends JpaRepository<GeneralDetails,Integer> {

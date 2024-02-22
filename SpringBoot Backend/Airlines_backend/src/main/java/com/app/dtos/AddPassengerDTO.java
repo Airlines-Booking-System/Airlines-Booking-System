@@ -6,10 +6,7 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
-import com.app.entities.AddressDetails;
-import com.app.entities.BookingDetails;
 import com.app.entities.GenderEnum;
-import com.app.entities.UserDetails;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;

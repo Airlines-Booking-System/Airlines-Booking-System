@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.app.entities.PaymentDetails;
-import com.app.entities.UserDetails;
+import com.app.entities.UserDetailsEntity;
 
 public interface PaymentDtlsDao extends JpaRepository<PaymentDetails,Integer>{
 
@@ -17,5 +17,5 @@ public interface PaymentDtlsDao extends JpaRepository<PaymentDetails,Integer>{
     @Query(value="select * from payment_details where id=:pid",nativeQuery = true)
     PaymentDetails findPaymentById(@Param("pid")Integer paymentId);
 
-    List<PaymentDetails> findByCustomerId(UserDetails customerId);
+    List<PaymentDetails> findByCustomerId(UserDetailsEntity customerId);
 }

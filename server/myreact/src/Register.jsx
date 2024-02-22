@@ -93,10 +93,10 @@ function UserProfile(props) {
 
     const RegisterUser = ()=>{
         const payload = {
-            "name": fullName,
-              "cpass": password,
+            "firstName": fullName,
+              "password": password,
               "email": email,
-              "role": "USER",
+              "role": "ROLE_USER",
               "aadhar": aadhar,
               "dob": dob,
               "gender": gender,
@@ -109,7 +109,7 @@ function UserProfile(props) {
               "address": address
             }
 
-        axios.post(`${serverIp}/flights/addCustomer`, payload).then((resp)=>{
+        axios.post(`${serverIp}/jwt/signup`, payload).then((resp)=>{
             if(resp.status == 200) toast.success("Successfully registered, now you can login")
             navigate("/login");
         })

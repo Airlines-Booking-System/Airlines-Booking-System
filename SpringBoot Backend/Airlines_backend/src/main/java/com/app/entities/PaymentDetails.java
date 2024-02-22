@@ -29,7 +29,7 @@ public class PaymentDetails extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private UserDetails customerId;
+    private UserDetailsEntity customerId;
 
     @Enumerated(EnumType.STRING)
     private StatusEnum status;

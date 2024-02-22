@@ -12,7 +12,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.app.daos.AddressDtlsDao;
 import com.app.daos.BookingDtlsDao;
 import com.app.daos.FlightDtlsDao;
 import com.app.daos.GeneralDtlsDao;
@@ -33,7 +32,7 @@ import com.app.entities.PassengerDetails;
 import com.app.entities.PaymentDetails;
 import com.app.entities.SeatDetails;
 import com.app.entities.StatusEnum;
-import com.app.entities.UserDetails;
+import com.app.entities.UserDetailsEntity;
 
 @Service
 @Transactional
@@ -45,8 +44,7 @@ public class BookFlightServiceImpl implements BookFlightService {
     @Autowired
     private BookingDtlsDao bdao;
 
-    @Autowired
-    private AddressDtlsDao adao;
+    
 
     @Autowired
     private BookingDtlsDao dao;
@@ -76,14 +74,10 @@ public class BookFlightServiceImpl implements BookFlightService {
         bookingDetails.setFarePrice(currentFlight.getFarePrice());
         System.out.println("3");
         bookingDetails.setDuration(LocalTime.ofSecondOfDay(currentFlight.getArrival().toLocalTime().toSecondOfDay()-currentFlight.getDeparture().toLocalTime().toSecondOfDay()));
-        System.out.println("4");
-        // if (!bookFlightDto.getPassengerid().isEmpty()){
-        //     System.out.println("5");
-        //     bookingDetails.setPassengerId(pdao.findAllById(bookFlightDto.getPassengerid()));
-        // }
-        System.out.println("6");
-        UserDetails customer=udao.findCustomerById(bookFlightDto.getCid());
-        System.out.println("7");
+        if (!bookFlightDto.getPassengerid().isEmpty()){
+            bookingDetails.setPassengerId(pdao.findAllById(bookFlightDto.getPassengerid()));
+        }
+        UserDetailsEntity customer=udao.findCustomerById(bookFlightDto.getCid());
         bookingDetails.setCustomerId(customer);
         // System.out.println(customer.getName());
         System.out.println("8");
@@ -154,7 +148,7 @@ public class BookFlightServiceImpl implements BookFlightService {
 
     @Override
     public ResponseEntity<ViewProfileDTO> viewProfile(Integer id) {
-        UserDetails details= udao.findById(id).get();
+        UserDetailsEntity details= udao.findById(id).get();
         GeneralDetails generalDetails=gdao.findByCustomerId(id);
         ViewProfileDTO dto=modelMapper.map(details, ViewProfileDTO.class);
         dto.setAadhar(generalDetails.getAadhar());
@@ -173,7 +167,7 @@ public class BookFlightServiceImpl implements BookFlightService {
         System.out.println("\n\n Mapped add passenger dto to passenger details entity: \n\n" + passenger);        
         pdao.save(passenger);
         System.out.println("\n\n Passanger added, mapping the passenger to a customer: \n\n");
-        UserDetails customer = udao.findById(cid).orElseThrow();
+        UserDetailsEntity customer = udao.findById(cid).orElseThrow();
         List<PassengerDetails> passList = customer.getPassengerId();
         passList.add(passenger);
         customer.setPassengerId(passList);
@@ -183,7 +177,7 @@ public class BookFlightServiceImpl implements BookFlightService {
 
     @Override
     public ResponseEntity<ViewProfileDTO> editProfile(ViewProfileDTO dto, Integer id) {
-        UserDetails userToUpdate= udao.findCustomerById(id);
+        UserDetailsEntity userToUpdate= udao.findCustomerById(id);
         GeneralDetails generalDetails= gdao.findByCustomerId(id);
         userToUpdate.setCpass(dto.getCpass());
         userToUpdate.setEmail(dto.getEmail());
@@ -228,7 +222,7 @@ public class BookFlightServiceImpl implements BookFlightService {
     public ResponseEntity<?> makePayment(PaymentDTO paymentDTO) {
         System.out.println("\n\n" + paymentDTO + "\n\n");
         PaymentDetails payment = new PaymentDetails();
-        UserDetails user = udao.findById(paymentDTO.getCustomerId()).orElseThrow();
+        UserDetailsEntity user = udao.findById(paymentDTO.getCustomerId()).orElseThrow();
         System.out.println("\n\n" + user.getPaymentID().size() + "\n\n");
         payment.setCustomerId(user);
         payment.setStatus(StatusEnum.Successful);

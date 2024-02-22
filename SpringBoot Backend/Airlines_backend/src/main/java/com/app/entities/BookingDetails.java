@@ -32,7 +32,7 @@ import lombok.ToString;
 public class BookingDetails extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "customerId")
-    private UserDetails customerId;
+    private UserDetailsEntity customerId;
 
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "paymentId")
