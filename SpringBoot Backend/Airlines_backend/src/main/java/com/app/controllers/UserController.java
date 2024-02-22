@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE, RequestMethod.OPTIONS})
 public class UserController {
     @Autowired
     private BookFlightService service;

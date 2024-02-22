@@ -29,15 +29,23 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function Profile() {
-    const params = useParams();
-    const customerId = params["customerId"];
+    const [customerId, setCustomerId] = useState(sessionStorage.getItem("customerId"));// sessionStorage.getItem("customerId");
+    const [jwt, setJwt] = useState(sessionStorage.getItem("jwt")); // sessionStorage.getItem("jwt");
     const navigate = useNavigate();
         const [passenger,setPassenger]=useState({});
         const serverUrl=`http://${serverIp}:${port}`;
 
         const getDetails = async ()=>{
             try{
-                const resp = await axios.get(`${serverUrl}/user/viewProfile/${customerId}`);
+                setCustomerId(sessionStorage.getItem("customerId"));
+                setJwt(sessionStorage.getItem("jwt"));
+                console.log("CUST: " + customerId);
+                console.log("jwt: " + jwt);
+                console.log("SESS CUS: " + sessionStorage.getItem("customerId"));
+                const resp = await axios.get(`${serverUrl}/user/viewProfile/${customerId}`,
+                {
+                    headers:{Authorization:jwt}
+                });
                 if(resp.status === 200){
                     setPassenger(resp.data);
                 }

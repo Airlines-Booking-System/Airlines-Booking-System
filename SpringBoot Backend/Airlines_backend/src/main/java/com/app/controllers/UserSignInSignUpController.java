@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.app.dtos.SigninRequest;
@@ -30,7 +31,7 @@ import com.app.services.UserService;
 
 @RestController
 @RequestMapping("/jwt")
-@CrossOrigin 
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.DELETE,RequestMethod.HEAD,RequestMethod.OPTIONS, RequestMethod.PATCH, RequestMethod.POST, RequestMethod.PUT, RequestMethod.TRACE })
 public class UserSignInSignUpController {
 	@Autowired 
 	private HttpSession session;
