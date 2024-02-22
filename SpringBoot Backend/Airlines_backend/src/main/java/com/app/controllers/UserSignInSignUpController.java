@@ -77,7 +77,7 @@ public class UserSignInSignUpController {
 			session.setAttribute("userid", u.getId());
 			System.out.println("email mila  "+ (Integer)session.getAttribute("userid"));
 			return ResponseEntity
-					.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), "Successful Authentication!!!"));
+					.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), u.getId()));
 
 		}
 

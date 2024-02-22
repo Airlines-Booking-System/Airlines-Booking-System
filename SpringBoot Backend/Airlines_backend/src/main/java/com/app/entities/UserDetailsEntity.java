@@ -20,8 +20,7 @@ import lombok.ToString;
 
 @Entity
 @Getter
-@Setter 
-@NoArgsConstructor
+@Setter
 @AllArgsConstructor
 @ToString
 public class UserDetailsEntity extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED WITH SERIALIZABLE DUE TO INHERITANCE (BASE ENTITY)*/{

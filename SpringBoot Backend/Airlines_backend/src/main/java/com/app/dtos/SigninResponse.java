@@ -7,11 +7,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 public class SigninResponse {
 	private String jwt;
-	private String mesg;
+	private Integer customerId;
 	
 	
 	public String getJwt() {
@@ -20,16 +18,16 @@ public class SigninResponse {
 	public void setJwt(String jwt) {
 		this.jwt = jwt;
 	}
-	public String getMesg() {
-		return mesg;
+	public Integer getCustomerId() {
+		return customerId;
 	}
-	public void setMesg(String mesg) {
-		this.mesg = mesg;
+	public void setCustomerId(Integer mesg) {
+		this.customerId = mesg;
 	}
-	public SigninResponse(String jwt, String mesg) {
+	public SigninResponse(String jwt, Integer mesg) {
 		super();
 		this.jwt = jwt;
-		this.mesg = mesg;
+		this.customerId = mesg;
 	}
 	public SigninResponse() {
 		super();
