@@ -116,7 +116,7 @@ function EditFLight(){
     return (
         <>
             <div className="container centerText">
-                <p className="logoFont centerText">Create a Flight</p>
+                <p className="logoFont centerText">Edit Flight</p>
 
                             
                 <p className="myfont">Enter Flight Name:</p>

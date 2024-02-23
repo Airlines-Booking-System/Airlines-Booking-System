@@ -78,7 +78,7 @@ function ViewFlights() {
         <>
             <div style={{"textAlign":"center"}}>
                 <p className="logoFont centerText">
-                    Admin Edit/Delete Page
+                    Admin Page
                 </p>
                 <div className="searchDiv restDiv">
                     <div style={{"textAlign":"center"}}>
