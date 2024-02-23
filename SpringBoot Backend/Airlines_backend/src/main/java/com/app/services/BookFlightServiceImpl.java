@@ -148,7 +148,7 @@ public class BookFlightServiceImpl implements BookFlightService {
 
     @Override
     public ResponseEntity<ViewProfileDTO> viewProfile(Integer id) {
-        UserDetailsEntity details= udao.findById(id).get();
+        UserDetailsEntity details= udao.findById(id).orElseThrow();
         GeneralDetails generalDetails=gdao.findByCustomerId(id);
         ViewProfileDTO dto=modelMapper.map(details, ViewProfileDTO.class);
         dto.setAadhar(generalDetails.getAadhar());
