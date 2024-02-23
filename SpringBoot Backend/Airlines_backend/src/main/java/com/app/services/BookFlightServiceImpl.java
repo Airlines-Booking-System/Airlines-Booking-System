@@ -72,8 +72,11 @@ public class BookFlightServiceImpl implements BookFlightService {
         FlightDetails currentFlight = fDao.findById(bookFlightDto.getFlightID()).orElseThrow();
         System.out.println("2");
         bookingDetails.setFarePrice(currentFlight.getFarePrice());
+        System.out.println("\n\n" + currentFlight + "\n\n");
         System.out.println("3");
+
         bookingDetails.setDuration(LocalTime.ofSecondOfDay(currentFlight.getArrival().toLocalTime().toSecondOfDay()-currentFlight.getDeparture().toLocalTime().toSecondOfDay()));
+
         if (!bookFlightDto.getPassengerid().isEmpty()){
             bookingDetails.setPassengerId(pdao.findAllById(bookFlightDto.getPassengerid()));
         }
@@ -183,7 +186,7 @@ public class BookFlightServiceImpl implements BookFlightService {
         userToUpdate.setEmail(dto.getEmail());
         userToUpdate.setName(dto.getName());
 
-        udao.editProfile(userToUpdate.getCpass(),userToUpdate.getEmail(),userToUpdate.getName());
+        udao.editProfile(userToUpdate.getCpass(),userToUpdate.getEmail(),userToUpdate.getName(), userToUpdate.getId());
 
 
         generalDetails.setAadhar(dto.getAadhar());

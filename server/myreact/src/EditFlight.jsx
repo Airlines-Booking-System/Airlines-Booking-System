@@ -19,6 +19,8 @@ import { ToastContainer, toast } from "react-toastify";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function EditFLight(){
+    const [customerId, setCustomerId] = useState(sessionStorage.getItem("customerId"));// sessionStorage.getItem("customerId");
+    const [jwt, setJwt] = useState(sessionStorage.getItem("jwt"));
     const params = useParams();
     const flightId = params.flightId;
     const navigate = useNavigate();
@@ -61,7 +63,10 @@ function EditFLight(){
 
     const getFlightData = async()=>{
         try{
-            const resp = await axios.get(`${serverUrl}/flights/findFlightById/${flightId}`);
+            const resp = await axios.get(`${serverUrl}/flights/findFlightById/${flightId}`,
+            {
+                headers:{Authorization:jwt}
+            });
             const data = resp.data;
             setArrival(data["arrival"]);
             setDeparture(data["departure"]);
@@ -94,7 +99,10 @@ function EditFLight(){
         try{
             console.log("sending req to: ");
             console.log(`${serverUrl}/admin/editFlight/${flightId}`);
-            const resp = await axios.put(`${serverUrl}/admin/editFlight/${flightId}`, payload);
+            const resp = await axios.put(`${serverUrl}/admin/editFlight/${flightId}`, payload,
+            {
+                headers:{Authorization:jwt}
+            });
             if(resp.status === 200){
                 toast.success("Flight Edited!");
             }

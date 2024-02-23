@@ -33,9 +33,8 @@ import { ToastContainer, toast } from "react-toastify";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function BookFlight(){
-    const currentUser = {
-        "cid": 1
-    }
+    const [customerId, setCustomerId] = useState(sessionStorage.getItem("customerId"));// sessionStorage.getItem("customerId");
+    const [jwt, setJwt] = useState(sessionStorage.getItem("jwt"));
 
     const navigate = useNavigate();
     const [flightToBook, setFilghtToBook] = useState({});
@@ -72,14 +71,22 @@ function BookFlight(){
 
     const getAvailableSeats = ()=>{
         console.log("SENDING GET REQ")
-        console.log(`http://${serverUrl}/user/getAvailabeSeats/${flightId["flightId"]}`);
-        axios.get(`http://${serverUrl}/user/getAvailabeSeats/${flightId["flightId"]}`).then((resp)=>{
+        console.log(`http://${serverUrl}/user/getAvailabeSeats/${flightId["flightId"]}`,
+        {
+            headers:{Authorization:jwt}
+        });
+        axios.get(`http://${serverUrl}/user/getAvailabeSeats/${flightId["flightId"]}`, {
+            headers:{Authorization:jwt}
+        }).then((resp)=>{
             setAvailableSeats(resp.data);
         });
     }
 
     const getFlightToBook = async ()=>{
-        const resp = await axios.get(`http://${serverUrl}/flights/findFlightById/${flightId["flightId"]}`);
+        const resp = await axios.get(`http://${serverUrl}/flights/findFlightById/${flightId["flightId"]}`,
+        {
+            headers:{Authorization:jwt}
+        });
         setFilghtToBook(resp.data);
         console.log(resp);
         console.log(resp.data.farePrice);
@@ -87,7 +94,7 @@ function BookFlight(){
         let temp = {
             "flightId": `${flightId.flightId}`,
             "status": "Successful",
-            "customerId": `${currentUser.cid}`,
+            "customerId": `${customerId}`,
             "totalAmount": `${resp.data.farePrice}`
         }
         setPaymentDetails(temp);
@@ -99,7 +106,11 @@ function BookFlight(){
         // console.log("\n\n PAYMENT: " + paymentDetails.totalAmount);
         console.log(paymentDetails);
         console.log("\n\n PAYMENT: " + paymentDetails.totalAmount);
-        await axios.post(`http://${serverUrl}/user/makePayment`, paymentDetails).then((resp)=>{
+        await axios.post(`http://${serverUrl}/user/makePayment`,
+        paymentDetails,
+        {
+            headers:{Authorization:jwt}
+        }).then((resp)=>{
             console.log(resp.data);
             console.log(typeof(resp.data));
             console.log("setting paymentid")
@@ -142,13 +153,16 @@ function BookFlight(){
         //     ]
         // }
 
-        await axios.post(`http://${serverUrl}/user/bookFlight`,         {
-            "cid": currentUser.cid,
+        await axios.post(`http://${serverUrl}/user/bookFlight`,{
+            "cid": customerId,
             "flightID": flightId.flightId,
             "paymentId": paymentId,
             "seatNo": [
               selectedSeats
             ]
+        },
+        {
+            headers:{Authorization:jwt}
         }).then((resp)=>{
             toast.success("Flight Booked Successfully!");
         }).catch((err)=>{

@@ -17,6 +17,8 @@ import { ToastContainer, toast } from "react-toastify";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function CreateFlight(){
+    const [customerId, setCustomerId] = useState(sessionStorage.getItem("customerId"));// sessionStorage.getItem("customerId");
+    const [jwt, setJwt] = useState(sessionStorage.getItem("jwt"));
     const navigate = useNavigate();
     const serverUrl = `http://${serverIp}:${port}`
     const [name, setName] = useState("Akasa");
@@ -68,7 +70,10 @@ function CreateFlight(){
         try{
             console.log("sending req to: ");
             console.log(`${serverUrl}/admin/createflight`);
-            const resp = await axios.post(`${serverUrl}/admin/createflight`, payload);
+            const resp = await axios.post(`${serverUrl}/admin/createflight`, payload,
+            {
+                headers:{Authorization:jwt}
+            });
             if(resp.status === 200){
                 toast.success("Flight Created!");
             }

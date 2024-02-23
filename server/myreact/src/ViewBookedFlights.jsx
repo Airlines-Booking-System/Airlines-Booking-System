@@ -20,16 +20,19 @@ import { useNavigate } from "react-router-dom";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function ViewBookedFlights(){
+    const [customerId, setCustomerId] = useState(sessionStorage.getItem("customerId"));// sessionStorage.getItem("customerId");
+    const [jwt, setJwt] = useState(sessionStorage.getItem("jwt"));
     const navigate = useNavigate();
     const serverUrl = `http://${serverIp}:${port}`
     const [bookingData, setBookingData] = useState([]);
-    const params = useParams();
-    const customerId = params.customerId;
     console.log(customerId);
 
     const getBookingDetails = async ()=>{
         try{
-            const resp = await axios.get(`${serverUrl}/user/viewBookedFlights/${customerId}`);
+            const resp = await axios.get(`${serverUrl}/user/viewBookedFlights/${customerId}`,
+            {
+                headers:{Authorization:jwt}
+            });
             setBookingData(resp.data);
         }
         catch{

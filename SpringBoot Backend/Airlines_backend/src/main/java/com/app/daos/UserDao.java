@@ -18,10 +18,10 @@ public interface UserDao extends JpaRepository<UserDetailsEntity,Integer> {
     List<UserDetailsEntity> findAllUsers();
 
     @Modifying
-    @Query(value = "update user_details set cpass=:cpass, email=:email, name=:name",nativeQuery = true)
-    void editProfile(@Param("cpass") String cpass,@Param("email")String email,@Param("name")String name);
+    @Query(value = "update user_details_entity set cpass=:cpass, email=:email, name=:name where id = :customerId",nativeQuery = true)
+    void editProfile(@Param("cpass") String cpass,@Param("email")String email,@Param("name")String name, @Param("customerId") Integer customerId);
 
-    @Query(value="select * from user_details where id=:cid",nativeQuery = true)
+    @Query(value="select * from user_details_entity where id=:cid",nativeQuery = true)
     UserDetailsEntity findCustomerById(@Param("cid")Integer cid);
 
 

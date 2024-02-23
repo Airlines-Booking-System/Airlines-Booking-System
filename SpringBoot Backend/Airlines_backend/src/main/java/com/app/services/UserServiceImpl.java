@@ -10,7 +10,9 @@ import com.app.daos.GeneralDtlsDao;
 import com.app.daos.UserDao;
 import com.app.dtos.Signup;
 import com.app.entities.GeneralDetails;
+import com.app.entities.RoleEnum;
 import com.app.entities.UserDetailsEntity;
+import com.app.entities.UserRole;
 
 @Service
 @Transactional
@@ -38,15 +40,17 @@ public class UserServiceImpl implements UserService {
 		user.setCpass(encoder.encode(reqDTO.getPassword()));//pwd : encrypted using SHA
 		System.out.println("in service---------"+user.getCpass());
 		UserDetailsEntity u=userDao.save(user);
-		GeneralDetails general = new GeneralDetails();
-		general.setAadhar(reqDTO.getAadhar());
-		general.setAddress(reqDTO.getAddress());
-		general.setCustomer(u);
-		general.setDob(reqDTO.getDob());
-		general.setGender(reqDTO.getGender());
-		general.setMobileNumber(reqDTO.getMobileNumber());
-		general.setPincode(reqDTO.getPincode());
-		generalDao.save(general);
+		if(reqDTO.getRole() == UserRole.ROLE_USER){
+			GeneralDetails general = new GeneralDetails();
+			general.setAadhar(reqDTO.getAadhar());
+			general.setAddress(reqDTO.getAddress());
+			general.setCustomer(u);
+			general.setDob(reqDTO.getDob());
+			general.setGender(reqDTO.getGender());
+			general.setMobileNumber(reqDTO.getMobileNumber());
+			general.setPincode(reqDTO.getPincode());
+			generalDao.save(general);
+		}
 		return new Signup(u.getName(),u.getEmail(), u.getCpass(), u.getRole());
 	}
 

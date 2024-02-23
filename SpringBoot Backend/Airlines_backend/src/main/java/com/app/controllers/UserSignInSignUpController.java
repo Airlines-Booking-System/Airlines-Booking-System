@@ -64,7 +64,7 @@ public class UserSignInSignUpController {
 	 */
 	@PostMapping("/signin")
 		public ResponseEntity<?> signinUser(@RequestBody SigninRequest reqDTO) {
-			System.out.println("in signin " + reqDTO.getEmail());
+			// System.out.println("in signin " + reqDTO.getEmail());
 			// simply invoke authentucate(...) on AuthMgr
 			// i/p : Authentication => un verifed credentials
 			// i/f --> Authentication --> imple by UsernamePasswordAuthToken
@@ -74,12 +74,12 @@ public class UserSignInSignUpController {
 			Authentication verifiedAuth = mgr
 					.authenticate(new UsernamePasswordAuthenticationToken
 							(reqDTO.getEmail(), reqDTO.getPassword()));
-			System.out.println(verifiedAuth.getClass());// Custom user details
+			// System.out.println(verifiedAuth.getClass());// Custom user details
 			// => auth success
-			System.out.println("here token    ------------"+utils.generateJwtToken(verifiedAuth));
+			// System.out.println("here token    ------------"+utils.generateJwtToken(verifiedAuth));
 			UserDetailsEntity u=userdao.findByEmail(reqDTO.getEmail());
 			session.setAttribute("userid", u.getId());
-			System.out.println("email mila  "+ (Integer)session.getAttribute("userid"));
+			// System.out.println("email mila  "+ (Integer)session.getAttribute("userid"));
 			return ResponseEntity
 					.ok(new SigninResponse(utils.generateJwtToken(verifiedAuth), u.getId()));
 

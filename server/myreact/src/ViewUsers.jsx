@@ -17,11 +17,16 @@ import { useNavigate } from "react-router-dom";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function ViewUsers(){
+    const [customerId, setCustomerId] = useState(sessionStorage.getItem("customerId"));// sessionStorage.getItem("customerId");
+    const [jwt, setJwt] = useState(sessionStorage.getItem("jwt"));
     const serverUrl = `http://${serverIp}:${port}`
     const [users, setUsers] = useState([]);
     const navigate = useNavigate();
     const getUsers = async ()=>{
-        const resp = await axios.get(`${serverUrl}/admin/viewallusers`);
+        const resp = await axios.get(`${serverUrl}/admin/viewallusers`,
+        {
+            headers:{Authorization:jwt}
+        });
         if(resp.status === 200){
             setUsers(resp.data);
         }

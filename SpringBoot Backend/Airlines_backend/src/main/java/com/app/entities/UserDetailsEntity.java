@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.apache.commons.lang3.builder.ToStringExclude;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +24,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @AllArgsConstructor
-@ToString
+@ToString(exclude = "paymentID")
 public class UserDetailsEntity extends BaseEntity /*THIS IS AUTOMATICALLY IMPLEMENTED WITH SERIALIZABLE DUE TO INHERITANCE (BASE ENTITY)*/{
 	
 	public UserDetailsEntity( String string2, String string3, String encode, UserRole roleAdmin) {

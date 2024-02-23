@@ -12,7 +12,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function ViewFlights() {
-
+    const [customerId, setCustomerId] = useState(sessionStorage.getItem("customerId"));// sessionStorage.getItem("customerId");
+    const [jwt, setJwt] = useState(sessionStorage.getItem("jwt"));
     const navigate = useNavigate();
 
     const viewFlightDetails = ()=>{
@@ -31,7 +32,10 @@ function ViewFlights() {
         setSearchResult(true);
         const requestData = {toCity:toCity, fromCity: fromCity, departure:selectedDate+"T00:00:00.00Z"}
         console.log(requestData);
-        axios.post(serverUrl + "/flights/all", requestData).then((response)=>{
+        axios.post(serverUrl + "/flights/all", requestData,
+        {
+            headers:{Authorization:jwt}
+        }).then((response)=>{
             if(response.status == 404){resultNotFoundToast()}
             setFilghts(response.data);
         }).catch((error)=>{

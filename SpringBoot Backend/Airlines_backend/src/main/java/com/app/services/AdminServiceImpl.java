@@ -15,6 +15,7 @@ import com.app.daos.UserDao;
 import com.app.dtos.FlightDTO;
 import com.app.dtos.PaymentDTO;
 import com.app.dtos.UserDTO;
+import com.app.entities.BookingDetails;
 import com.app.entities.FlightDetails;
 import com.app.entities.PaymentDetails;
 import com.app.entities.SeatDetails;
@@ -119,12 +120,17 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public List<PaymentDTO> allPayments() {
         List<PaymentDetails> list=pdao.getAllPayments();
+        System.out.println("\n\n" + list + "\n\n");
         List<PaymentDTO> dto=new ArrayList<>();
         for (PaymentDetails p : list) {
             PaymentDTO d=new PaymentDTO();
+            // System.out.println("\n\n" + 1 + "\n\n");
             d.setFlightName(p.getBookingId().getFlightId().getName());
+            // System.out.println("\n\n" + 2 + "\n\n");
             d.setStatus(p.getStatus());
+            // System.out.println("\n\n" + 3 + "\n\n");
             d.setTotalAmount(p.getTotalAmount());
+            // System.out.println("\n\n" + 4 + "\n\n");
             d.setUserName(p.getBookingId().getCustomerId().getName());
             dto.add(d);
         }

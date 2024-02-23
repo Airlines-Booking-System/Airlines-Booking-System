@@ -49,14 +49,17 @@ const port = process.env.REACT_APP_PORT_NO;
 const serverIp = process.env.REACT_APP_SERVER_IP;
 function EditProfile() {
     const navigate = useNavigate();
-    const params = useParams();
-    const customerId = params.customerId;
+    const [customerId, setCustomerId] = useState(sessionStorage.getItem("customerId"));// sessionStorage.getItem("customerId");
+    const [jwt, setJwt] = useState(sessionStorage.getItem("jwt"));
     const [passenger,setPassenger]=useState({});
     const serverUrl=`http://${serverIp}:${port}`;
 
     const getDetails = async ()=>{
         try{
-            const resp = await axios.get(`${serverUrl}/user/viewProfile/${customerId}`);
+            const resp = await axios.get(`${serverUrl}/user/viewProfile/${customerId}`, 
+            {
+                headers:{Authorization:jwt}
+            });
             if(resp.status === 200){    
                 setPassenger(resp.data);
                 setName(resp.data["name"]);
@@ -132,6 +135,9 @@ function EditProfile() {
                 "name": name,
                 "email": email,
                 "cpass": password
+            },
+            {
+                headers:{Authorization:jwt}
             });
 
             if(resp.status === 200){

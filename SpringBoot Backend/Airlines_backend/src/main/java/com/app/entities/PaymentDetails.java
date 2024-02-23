@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.apache.commons.lang3.builder.ToStringExclude;
+
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -21,7 +23,7 @@ import lombok.ToString;
 @Setter 
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString(callSuper = true)
+@ToString(callSuper = true, exclude = {"customerId", "bookingId"})
 @EqualsAndHashCode(callSuper = true)
 public class PaymentDetails extends BaseEntity {
     @OneToOne(mappedBy = "paymentID", cascade = CascadeType.ALL)
